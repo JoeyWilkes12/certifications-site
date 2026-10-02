@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joeywilkes12.github.io/certifications-site/sitemap.xml
