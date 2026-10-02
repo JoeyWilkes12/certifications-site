@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "owner": "Joey Wilkes",
+  "issuer": "Google Skills",
+  "profileUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703",
+  "reviewedOn": "2026-10-02",
+  "badges": [
+    {
+      "id": "create-generative-ai-apps-on-google-cloud",
+      "title": "Create Generative AI Apps on Google Cloud",
+      "profileTitle": "Create Generative AI Apps on Google Cloud",
+      "earnedOn": "2025-01-06",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13507882?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/1120?locale=en",
+      "image": "assets/google-badges/create-generative-ai-apps-on-google-cloud.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/1xNYRvlewCL%2FcS%2B1VXIQfO0daJL7wf87YRxZ%2FANJOZw%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Create Generative AI Apps on Google Cloud",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/1120?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "learn about generative AI applications and how you can use prompt design and retrieval augmented generation (RAG) to build powerful applications using LLMs.",
+        "overview": "Covers prompt design and retrieval augmented generation for production oriented LLM applications, including building an LLM and RAG chat app."
+      }
+    },
+    {
+      "id": "ml-pipelines-on-google-cloud",
+      "title": "ML Pipelines on Google Cloud",
+      "profileTitle": "ML Pipelines on Google Cloud",
+      "earnedOn": "2024-12-30",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13459426?locale=en",
+      "courseUrl": null,
+      "image": "assets/google-badges/ml-pipelines-on-google-cloud.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/RELd0qk1YHhJNu2jcu3fX9pj27YTHCgpiikop3Xtt5k%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "ML Pipelines on Google Cloud",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13459426?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "The first few modules will cover about TensorFlow Extended (or TFX), which is Google’s production machine learning platform based on TensorFlow",
+        "overview": "Introduces TFX pipeline components and orchestration, then covers repeatable pipelines, continuous training, Cloud Composer, and MLflow.",
+        "excerptSourceUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13459426?locale=en"
+      },
+      "historicalLearnMoreUrl": "https://www.skills.google/course_templates/191?locale=en",
+      "catalogStatus": "unavailable"
+    },
+    {
+      "id": "responsible-ai-for-developers-privacy-safety",
+      "title": "Responsible AI for Developers: Privacy & Safety",
+      "profileTitle": "Responsible AI for Developers: Privacy & Safety",
+      "earnedOn": "2024-12-28",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13437596?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/1036?locale=en",
+      "image": "assets/google-badges/responsible-ai-for-developers-privacy-safety.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/aT%2ByqDxCyuFE5FmKsIdaOE2HUIlbV%2F%2Fx7YtMauaAf4o%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Responsible AI for Developers: Privacy & Safety",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/1036?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course introduces important topics of AI privacy and safety.",
+        "overview": "Explains practical ways to apply privacy and safety practices with Google Cloud products and open source tools."
+      }
+    },
+    {
+      "id": "responsible-ai-for-developers-fairness-bias",
+      "title": "Responsible AI for Developers: Fairness & Bias",
+      "profileTitle": "Responsible AI for Developers: Fairness & Bias",
+      "earnedOn": "2024-12-28",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13437117?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/985?locale=en",
+      "image": "assets/google-badges/responsible-ai-for-developers-fairness-bias.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/%2FkbCqKejqzFpL4V8ARGmHFmNIVTWX%2FAyB4ZDGYUeEj0%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Responsible AI for Developers: Fairness & Bias",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/985?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course introduces concepts of responsible AI and AI principles.",
+        "overview": "Covers recognizing and mitigating bias, then applying responsible AI practices with Google Cloud and open source tools."
+      }
+    },
+    {
+      "id": "build-a-certification-study-guide-pmle",
+      "title": "Build a Certification Study Guide: PMLE",
+      "profileTitle": "Build a Certification Study Guide: PMLE",
+      "earnedOn": "2024-12-20",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13350496?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/1171?locale=en",
+      "image": "assets/google-badges/build-a-certification-study-guide-pmle.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/bPVCLOmGEqIbMV9ECi%2FzHMcszbFk6ajXvkb121OpgFw%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Build a Certification Study Guide: PMLE",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/1171?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "Learn how to use Gemini Notebook to create a personalized study guide for the Professional Machine Learning Engineer (PMLE) certification exam.",
+        "overview": "Shows how to create a Gemini Notebook study guide and use it to practice for the Professional Machine Learning Engineer certification."
+      },
+      "earnedTitle": "Professional Machine Learning Engineer Study Guide"
+    },
+    {
+      "id": "responsible-ai-for-developers-interpretability-transparency",
+      "title": "Responsible AI for Developers: Interpretability & Transparency",
+      "profileTitle": "Responsible AI for Developers: Interpretability & Transparency",
+      "earnedOn": "2024-12-18",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/13310262?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/989?locale=en",
+      "image": "assets/google-badges/responsible-ai-for-developers-interpretability-transparency.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/qRN3TCSWT8DeP5EicrfIF9Lz60aSz%2FeQs5kNfSXBX1E%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Responsible AI for Developers: Interpretability & Transparency",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/989?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course introduces concepts of AI interpretability and transparency.",
+        "overview": "Explains why transparency matters to developers and engineers and presents practical ways to improve interpretability in data and models."
+      }
+    },
+    {
+      "id": "machine-learning-operations-mlops-with-agent-platform-model-evaluation",
+      "title": "Machine Learning Operations (MLOps) with Agent Platform: Model Evaluation",
+      "profileTitle": "Machine Learning Operations (MLOps) with Agent Platform: Model Evaluation",
+      "earnedOn": "2024-10-18",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/12200410?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/1080?locale=en",
+      "image": "assets/google-badges/machine-learning-operations-mlops-with-agent-platform-model-evaluation.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/nUD2HvwZngjP03UOHHnz%2BiNCFo5y%2FOKKeu6rlqCpPYk%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Machine Learning Operations (MLOps) with Agent Platform: Model Evaluation",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/1080?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course equips machine learning practitioners with the essential tools, techniques, and best practices for evaluating both generative and predictive AI models.",
+        "overview": "Covers evaluation measures and methods for generative and predictive models, using Agent Platform for model selection, optimization, and ongoing monitoring."
+      },
+      "earnedTitle": "Machine Learning Operations (MLOps) with Vertex AI: Model Evaluation"
+    },
+    {
+      "id": "machine-learning-operations-mlops-for-generative-ai",
+      "title": "Machine Learning Operations (MLOps) for Generative AI",
+      "profileTitle": "Machine Learning Operations (MLOps) for Generative AI",
+      "earnedOn": "2024-10-11",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/12004413?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/927?locale=en",
+      "image": "assets/google-badges/machine-learning-operations-mlops-for-generative-ai.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/iP10RqH7rDSX691wvToqLJ%2BWMOpOV2bdy%2FTkN4PHn%2Fo%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Machine Learning Operations (MLOps) for Generative AI",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/927?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course is dedicated to equipping you with the knowledge and tools needed to uncover the unique challenges faced by MLOps teams",
+        "overview": "Describes operational challenges for generative AI deployments and how Gemini Enterprise Agent Platform can streamline MLOps work."
+      }
+    },
+    {
+      "id": "attention-mechanism",
+      "title": "Attention Mechanism",
+      "profileTitle": "Attention Mechanism",
+      "earnedOn": "2024-08-29",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/10957550?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/537?locale=en",
+      "image": "assets/google-badges/attention-mechanism.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/CyCbNDlPSGkFwzzVYMf9HiPW8XY5cJfLT3jGMVcw7%2Bo%3D",
+      "kind": "Completion badge",
+      "documentation": {
+        "title": "Attention Mechanism",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/537?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "a powerful technique that allows neural networks to focus on specific parts of an input sequence",
+        "overview": "Introduces how attention focuses neural networks on relevant input and how it supports translation, summarization, and question answering."
+      }
+    },
+    {
+      "id": "enterprise-search-on-generative-ai-app-builder",
+      "title": "Enterprise Search on Generative AI App Builder",
+      "profileTitle": "Enterprise Search on Generative AI App Builder",
+      "kind": "Completion badge",
+      "earnedOn": "2024-08-15",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/10599248?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/612?locale=en",
+      "image": "assets/google-badges/enterprise-search-on-generative-ai-app-builder.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/3SAazVfxbJZb2irzET7GSRxxPnh52jaDyWAvRpes2MQ%3D",
+      "documentation": {
+        "title": "Enterprise Search on Generative AI App Builder",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/612?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "Enterprises of all sizes have trouble making their information readily accessible to employees and customers alike.",
+        "overview": "Explains how organizations can make scattered internal documents and broad consumer-facing catalogs easier to search. Learners use Generative AI App Builder to add generative search to their applications."
+      }
+    },
+    {
+      "id": "introduction-to-vertex-forecasting-and-time-series-in-practice",
+      "title": "Introduction to Vertex Forecasting and Time Series in Practice",
+      "profileTitle": "Introduction to Vertex Forecasting and Time Series in Practice",
+      "kind": "Completion badge",
+      "earnedOn": "2024-07-28",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/10116015?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/511?locale=en",
+      "image": "assets/google-badges/introduction-to-vertex-forecasting-and-time-series-in-practice.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/MoIikZVW6p7EVbUb%2Fy3zCeCOjpOBqve0MRqAwjioH8g%3D",
+      "documentation": {
+        "title": "Introduction to Vertex Forecasting and Time Series in Practice",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/511?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course is an introduction to building forecasting solutions with Google Cloud.",
+        "overview": "Covers forecasting on Google Cloud from sequence-model and time-series foundations through data preparation, model development, and Vertex AI deployment. A retail example informs a final exercise in which learners build their own forecasts."
+      }
+    },
+    {
+      "id": "vector-search-and-embeddings",
+      "title": "Vector Search and Embeddings",
+      "profileTitle": "Vector Search and Embeddings",
+      "kind": "Completion badge",
+      "earnedOn": "2024-05-10",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/8966122?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/939?locale=en",
+      "image": "assets/google-badges/vector-search-and-embeddings.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/OTvzCNahRc5yWQmHZ0Bu3%2BNt%2FrbD1Em2CsqQU3gLTW8%3D",
+      "documentation": {
+        "title": "Vector Search and Embeddings",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/939?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "Explore AI-powered search technologies, tools, and applications in this course.",
+        "overview": "Introduces AI-powered search patterns including semantic search with vector embeddings, hybrid retrieval that combines semantic and keyword methods, and retrieval-augmented generation. Learners use Vertex AI Vector Search to build a grounded search experience and can continue with related GEAR content."
+      }
+    },
+    {
+      "id": "machine-learning-operations-mlops-getting-started",
+      "title": "Machine Learning Operations (MLOps): Getting Started",
+      "profileTitle": "Machine Learning Operations (MLOps): Getting Started",
+      "kind": "Completion badge",
+      "earnedOn": "2024-05-03",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/8860380?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/158?locale=en",
+      "image": "assets/google-badges/machine-learning-operations-mlops-getting-started.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/JVdl2MVoxjJfHXmX8W7byqOg5qRHAoRomSE%2B3kKZkO8%3D",
+      "documentation": {
+        "title": "Machine Learning Operations (MLOps): Getting Started",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/158?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course introduces participants to MLOps tools and best practices for deploying, evaluating, monitoring and operating production ML systems on Google Cloud.",
+        "overview": "Introduces Google Cloud tools and practices for deploying, evaluating, monitoring, testing, and automating production machine-learning systems. It describes how ML engineers work with data scientists to improve deployed models with discipline and speed."
+      }
+    },
+    {
+      "id": "machine-learning-in-the-enterprise",
+      "title": "Machine Learning in the Enterprise",
+      "profileTitle": "Machine Learning in the Enterprise",
+      "kind": "Completion badge",
+      "earnedOn": "2024-04-30",
+      "earnedTimeZone": "EDT",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/8802703?locale=en",
+      "courseUrl": null,
+      "historicalLearnMoreUrl": "https://www.skills.google/course_templates/9?locale=en",
+      "catalogStatus": "unavailable",
+      "image": "assets/google-badges/machine-learning-in-the-enterprise.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/YM%2FhVF1ejNPq29Cg%2Bay03xP%2FYb98HW34WkI9eejKSnQ%3D",
+      "documentation": {
+        "title": "Machine Learning in the Enterprise",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/8802703?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course takes a real-world approach to the ML Workflow through a case study.",
+        "overview": "Uses a case study of an ML team to examine business requirements, data governance, and preprocessing choices. Learners compare AutoML, BigQuery ML, and custom training for two example workloads."
+      }
+    },
+    {
+      "id": "launching-into-machine-learning",
+      "title": "Launching into Machine Learning",
+      "profileTitle": "Launching into Machine Learning",
+      "kind": "Completion badge",
+      "earnedOn": "2024-01-19",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/7098470?locale=en",
+      "courseUrl": null,
+      "historicalLearnMoreUrl": "https://www.skills.google/course_templates/8?locale=en",
+      "catalogStatus": "unavailable",
+      "image": "assets/google-badges/launching-into-machine-learning.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/L3%2BCqyC%2BimXM%2FgYvEGlycaJQ2X9jmGBJY%2FvdYpE0m6M%3D",
+      "documentation": {
+        "title": "Launching into Machine Learning",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/7098470?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "The course begins with a discussion about data: how to improve data quality and perform exploratory data analysis.",
+        "overview": "Builds from data-quality practices and exploratory analysis into AutoML, BigQuery ML, and model optimization. It also covers generalization and sampling as ways to assess models trained for custom machine-learning tasks."
+      }
+    },
+    {
+      "id": "introduction-to-ai-and-machine-learning-on-google-cloud",
+      "title": "Introduction to AI and Machine Learning on Google Cloud",
+      "profileTitle": "Introduction to AI and Machine Learning on Google Cloud",
+      "kind": "Completion badge",
+      "earnedOn": "2023-12-14",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/6641725?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/593?locale=en",
+      "image": "assets/google-badges/introduction-to-ai-and-machine-learning-on-google-cloud.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/l%2B4t1O0UiCW7tdlNUDaqlF0dyYGObVkJI1C6YZzBRRE%3D",
+      "documentation": {
+        "title": "Introduction to AI and Machine Learning on Google Cloud",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/593?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "This course introduces Google Cloud's AI and machine learning (ML) capabilities, with a focus on developing both generative and predictive AI projects.",
+        "overview": "Surveys Google's AI and machine-learning products for both generative and predictive projects. Interactive exercises connect tools across the data-to-AI lifecycle for data scientists, AI developers, and ML engineers."
+      }
+    },
+    {
+      "id": "introduction-to-generative-ai",
+      "title": "Introduction to Generative AI",
+      "profileTitle": "Introduction to Generative AI",
+      "kind": "Completion badge",
+      "earnedOn": "2023-12-09",
+      "earnedTimeZone": "EST",
+      "earnedUrl": "https://www.skills.google/public_profiles/96cc2ec8-2aa7-4b78-ab59-7bf58f012703/badges/6574865?locale=en",
+      "courseUrl": "https://www.skills.google/course_templates/536?locale=en",
+      "image": "assets/google-badges/introduction-to-generative-ai.png",
+      "imageSourceUrl": "https://cdn.qwiklabs.com/9poOf57LuORMVF8FKZFbvixWJXJMPyilc7IlXcG9H8I%3D",
+      "documentation": {
+        "title": "Introduction to Generative AI",
+        "publisher": "Google Skills",
+        "url": "https://www.skills.google/course_templates/536?locale=en",
+        "reviewedOn": "2026-10-02",
+        "excerpt": "It also covers Google Tools to help you develop your own Gen AI apps.",
+        "overview": "Introduces generative AI, common applications, and its differences from traditional machine learning. The course also points learners to Google tools for creating their own generative AI applications."
+      }
+    }
+  ]
+}

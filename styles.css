@@ -160,3 +160,69 @@ html[data-theme="dark"] .row-status .expired{background:#4a2b39}
   .detail-related .record-status{margin-top:8px;white-space:nowrap}
   .detail-related a{font-size:14px}
 }
+
+/* Google Skills badges sit beneath the certification collection as a compact, independent archive. */
+.badge-jump{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:11px;font-weight:600;color:var(--link)}
+.badge-jump svg{width:15px;height:15px}
+.badge-jump:hover{color:var(--link);text-decoration:underline;text-underline-offset:4px}
+.google-badges{margin-top:56px;padding:40px 0 12px;border-top:1px solid var(--line);scroll-margin-top:28px}
+.badge-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:14px}
+.badge-section-heading h2{font-family:var(--display);font-size:36px;font-weight:600;line-height:1.08;letter-spacing:-.02em;margin:0 0 6px}
+.badge-section-heading p{color:var(--muted);font-size:12px;margin:0}
+.badge-profile-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:12px;font-weight:600;color:var(--link)}
+.badge-profile-link svg,.badge-actions svg,.badge-source svg{width:15px;height:15px}
+.badge-profile-link:hover,.badge-actions a:hover,.badge-source a:hover,.badge-section-footer a:hover{text-decoration:underline;text-underline-offset:4px}
+.badge-tools{margin:0 0 12px}
+.badge-tools .search{width:100%;max-width:340px}
+.badge-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.badge-row{border-bottom:1px solid var(--line)}
+.badge-entry{min-width:0}
+.badge-entry-summary{display:grid;grid-template-columns:56px minmax(0,1fr) 12px;align-items:center;column-gap:18px;min-height:84px;padding:12px 8px;cursor:pointer;list-style:none}
+.badge-entry-summary::-webkit-details-marker{display:none}
+.badge-entry-summary:hover{background:var(--panel)}
+.badge-entry-summary:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.badge-artwork{display:block;width:56px;height:56px;object-fit:contain;background:var(--white);border:1px solid var(--line);border-radius:6px}
+.badge-heading{display:grid;gap:2px;min-width:0}
+.badge-title{font-family:var(--display);font-size:20px;font-weight:600;line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.badge-entry-summary:hover .badge-title{color:var(--link)}
+.badge-metadata{display:flex;flex-wrap:wrap;gap:6px 12px;color:var(--muted);font-size:11px;line-height:1.5}
+.badge-disclosure-mark{justify-self:end;width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform 140ms ease}
+.badge-entry[open] .badge-disclosure-mark{transform:rotate(225deg)}
+.badge-entry-content{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:8px 24px;align-items:start;padding:0 30px 18px 82px}
+.badge-overview{grid-column:1;grid-row:1;max-width:72ch;margin:0;font-size:14px;line-height:1.6}
+.badge-actions{grid-column:2;grid-row:1;display:flex;flex-wrap:wrap;gap:0 12px;align-items:center}
+.badge-actions a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 4px;color:var(--link);font-size:12px;font-weight:600}
+.badge-source{grid-column:1/-1;grid-row:2;margin:0;color:var(--muted)}
+.badge-source blockquote{max-width:78ch;margin:0;font-size:13px;line-height:1.55}
+.badge-source figcaption{font-size:11px;line-height:1.45;margin-top:4px}
+.badge-source a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--link)}
+.badge-empty{padding:24px 8px;text-align:center;border-bottom:1px solid var(--line)}
+.badge-empty p{margin:0 0 10px;color:var(--muted);font-size:12px}
+.badge-section-footer{margin:18px 0 0;color:var(--muted);font-size:11px}
+.badge-section-footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--link)}
+.badge-section-footer a:focus-visible,.badge-source a:focus-visible,.badge-actions a:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+body.display-mode .google-badges{display:none}
+body:not(.js-enabled) .badge-tools{display:none}
+@media(max-width:1000px){
+  .badge-entry-content{grid-template-columns:minmax(0,1fr);gap:6px;padding-right:16px}
+  .badge-actions,.badge-source{grid-column:1;grid-row:auto}
+}
+@media(max-width:700px){
+  .google-badges{margin-top:40px;padding-top:30px;scroll-margin-top:20px}
+  .badge-section-heading{align-items:flex-start;gap:10px;flex-direction:column;margin-bottom:12px}
+  .badge-section-heading h2{font-size:32px}
+  .badge-section-heading p{font-size:11px}
+  .badge-profile-link{min-height:44px}
+  .badge-tools .search{max-width:none}
+  .badge-entry-summary{grid-template-columns:44px minmax(0,1fr) 10px;column-gap:12px;min-height:74px;padding:10px 4px}
+  .badge-artwork{width:44px;height:44px}
+  .badge-title{font-size:17px;line-height:1.15}
+  .badge-metadata{gap:2px 8px;font-size:11px}
+  .badge-entry-content{padding:0 8px 16px 60px;gap:8px}
+  .badge-overview{font-size:14px}
+  .badge-actions{gap:0 8px}
+  .badge-actions a{font-size:12px}
+  .badge-source blockquote{font-size:13px}
+  .badge-source figcaption{font-size:11px}
+  .badge-section-footer{font-size:11px;line-height:1.5}
+}

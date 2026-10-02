@@ -7,6 +7,8 @@ const showcase = $('#showcase');
 const reel = $('#reel');
 const slides = [...document.querySelectorAll('.credential-slide')];
 const rows = [...document.querySelectorAll('.credential-row')];
+const badgeSearch = $('#badge-search');
+const badgeRows = [...document.querySelectorAll('.badge-row')];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const interval = 7000;
 let filtered = credentials;
@@ -20,6 +22,29 @@ let hovered = false;
 let onScreen = true;
 let startPointer;
 document.body.classList.add('js-enabled');
+
+if (badgeSearch) {
+  const badgeStatus = $('#badge-result-count');
+  const badgeEmpty = $('.badge-empty');
+  const totalBadges = badgeRows.length;
+  const filterBadges = () => {
+    const value = badgeSearch.value.trim().toLocaleLowerCase();
+    let visible = 0;
+    for (const row of badgeRows) {
+      const matches = row.dataset.search.toLocaleLowerCase().includes(value);
+      row.hidden = !matches;
+      if (matches) visible += 1;
+    }
+    badgeStatus.textContent = value ? `${visible} of ${totalBadges} Google Skills badges match.` : `${totalBadges} Google Skills badges.`;
+    badgeEmpty.hidden = Boolean(visible);
+  };
+  badgeSearch.addEventListener('input', filterBadges);
+  $('#clear-badge-search').addEventListener('click', () => {
+    badgeSearch.value = '';
+    filterBadges();
+    badgeSearch.focus({ preventScroll: true });
+  });
+}
 
 function schedule() {
   window.clearInterval(timer);
