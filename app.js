@@ -1,7 +1,13 @@
 import './theme.js';
 
 const data = JSON.parse(document.querySelector('#credential-data').textContent);
-const credentials = data.credentials;
+// Reel order: pin the first few and the last tile; everything else keeps its data order.
+const reelOrder = { first: ['google-ml', 'aws-ai', 'anthropic-skills'], last: ['azure-fundamentals'] };
+const credentials = [
+  ...reelOrder.first.map(id => data.credentials.find(c => c.id === id)).filter(Boolean),
+  ...data.credentials.filter(c => !reelOrder.first.includes(c.id) && !reelOrder.last.includes(c.id)),
+  ...reelOrder.last.map(id => data.credentials.find(c => c.id === id)).filter(Boolean),
+];
 const $ = selector => document.querySelector(selector);
 const showcase = $('#showcase');
 const reel = $('#reel');
@@ -31,6 +37,22 @@ let radius = 460;
 const stack = $('#slide-stack');
 const autoStatus = $('#auto-status');
 document.body.classList.add('js-enabled');
+for (const slide of slides) {
+  const c = credentials.find(c => c.id === slide.dataset.id);
+  const img = slide.querySelector('.slide-art img');
+  if (!c || !img || !c.detailPath) continue;
+  const link = document.createElement('a');
+  link.className = 'art-link';
+  link.href = c.detailPath;
+  link.setAttribute('aria-label', `Open details: ${c.title}`);
+  link.draggable = false;
+  img.replaceWith(link);
+  link.append(img);
+  const halo = document.createElement('span');
+  halo.className = 'art-halo';
+  halo.setAttribute('aria-hidden', 'true');
+  link.prepend(halo);
+}
 
 if (badgeSearch) {
   const badgeStatus = $('#badge-result-count');
@@ -61,9 +83,12 @@ if (badgeSearch) {
 const autoAllowed = () => !reducedMotion.matches && filtered.length > 1 && !document.hidden && onScreen;
 const autoActive = () => autoAllowed() && !hovered && !focused && !dragging && !idleTimer;
 
+let stepAngle = Math.PI / 5;
 function measure() {
   const width = reel.clientWidth || 600;
-  radius = Math.min(400, Math.max(190, width * (width < 560 ? 0.62 : 0.5)));
+  const narrow = width < 560;
+  radius = Math.min(430, Math.max(200, width * (narrow ? 0.56 : 0.6)));
+  stepAngle = narrow ? Math.PI / 3.75 : Math.PI / 5; // 48° on phones, 36° otherwise
 }
 
 function wrapDelta(i, count) {
@@ -79,27 +104,26 @@ function layout() {
   if (!count) return;
   const activeIndex = ((Math.round(theta) % count) + count) % count;
   const perspective = 1300;
-  const spacing = (Math.PI * 2) / count;
-  const compact = count < 7 ? 7 / count : 1; // keep a few cards spread even when the set is small
+  const maxVisible = 2.55; // front tile + two on each side
   for (const slide of slides) {
     const i = filtered.findIndex(c => c.id === slide.dataset.id);
     if (i < 0) { slide.style.display = 'none'; continue; }
     const d = wrapDelta(i, count);
-    const a = d * spacing * compact;
+    const a = d * stepAngle;
     const cos = Math.cos(a), sin = Math.sin(a);
     const facing = Math.max(0, cos);
-    if (cos < -0.15 || Math.abs(d) > 3.45) { slide.style.display = 'none'; continue; }
+    if (cos < 0 || Math.abs(d) > maxVisible) { slide.style.display = 'none'; continue; }
     const x = sin * radius;
     const z = (cos - 1) * radius;
-    const y = (1 - cos) * -34;
-    const scale = 0.56 + 0.44 * facing ** 4;
-    const opacity = Math.min(1, Math.max(0, (3.45 - Math.abs(d)) / 1.6));
+    const y = (1 - cos) * -40;
+    const scale = 0.7 + 0.3 * facing ** 3;
+    const opacity = Math.min(1, Math.max(0, (maxVisible - Math.abs(d)) / 0.7));
     slide.style.display = 'block';
     slide.style.transform = `translate(-50%, -50%) perspective(${perspective}px) translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotateY(${(-a * 0.35).toFixed(3)}rad) scale(${scale.toFixed(3)})`;
     slide.style.opacity = opacity.toFixed(3);
     slide.style.zIndex = String(Math.round(1000 + z));
-    slide.style.filter = facing > 0.9 ? 'none' : `saturate(${(0.55 + 0.45 * facing).toFixed(2)}) brightness(${(0.82 + 0.18 * facing).toFixed(2)})`;
-    slide.classList.toggle('is-front', i === activeIndex && Math.abs(d) < 0.5);
+    slide.style.filter = facing > 0.9 ? 'none' : `saturate(${(0.7 + 0.3 * facing).toFixed(2)}) brightness(${(0.9 + 0.1 * facing).toFixed(2)})`;
+    slide.classList.toggle('is-front', Math.abs(d) < 0.5);
   }
 }
 
@@ -170,6 +194,8 @@ function syncActive({ announce = false } = {}) {
   const index = filtered.findIndex(c => c.id === activeId);
   for (const slide of slides) {
     const active = slide.dataset.id === activeId;
+    const i = filtered.findIndex(c => c.id === slide.dataset.id);
+    if (i >= 0) slide.setAttribute('aria-label', `${i + 1} of ${filtered.length}: ${filtered[i].title}`);
     slide.classList.toggle('is-active', active);
     if (active) slide.removeAttribute('aria-hidden'); else slide.setAttribute('aria-hidden', 'true');
     for (const el of slide.querySelectorAll('a, button')) {
