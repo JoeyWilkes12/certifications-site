@@ -1,7 +1,13 @@
 import './theme.js';
 
 const data = JSON.parse(document.querySelector('#credential-data').textContent);
-const credentials = data.credentials;
+// Reel order: pin the first few and the last tile; everything else keeps its data order.
+const reelOrder = { first: ['google-ml', 'aws-ai', 'anthropic-skills'], last: ['azure-fundamentals'] };
+const credentials = [
+  ...reelOrder.first.map(id => data.credentials.find(c => c.id === id)).filter(Boolean),
+  ...data.credentials.filter(c => !reelOrder.first.includes(c.id) && !reelOrder.last.includes(c.id)),
+  ...reelOrder.last.map(id => data.credentials.find(c => c.id === id)).filter(Boolean),
+];
 const $ = selector => document.querySelector(selector);
 const showcase = $('#showcase');
 const reel = $('#reel');
@@ -10,18 +16,47 @@ const rows = [...document.querySelectorAll('.credential-row')];
 const badgeSearch = $('#badge-search');
 const badgeRows = [...document.querySelectorAll('.badge-row')];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const interval = 7000;
+const dwell = 3600;      // ms the front card rests before the orbit advances
+const glide = 900;       // ms for one step of the orbit
+const idleResume = 6000; // ms after the last interaction before auto-rotation resumes
 let filtered = credentials;
 let activeId = credentials[0].id;
 let category = 'all';
 let progressStatus = 'all';
 let query = '';
-let playing = !reducedMotion.matches;
-let timer;
 let hovered = false;
+let focused = false;
 let onScreen = true;
-let startPointer;
+let dragging = null;
+let idleTimer;
+let stepTimer;
+let frame;
+let theta = 0;          // orbit position in card units (fractional while gliding)
+let tween = null;       // { from, to, start, duration }
+let radius = 460;
+const stack = $('#slide-stack');
+const autoStatus = $('#auto-status');
 document.body.classList.add('js-enabled');
+for (const slide of slides) {
+  const c = credentials.find(c => c.id === slide.dataset.id);
+  const img = slide.querySelector('.slide-art img');
+  if (!c || !img || !c.detailPath) continue;
+  const link = document.createElement('a');
+  link.className = 'art-link';
+  link.href = c.detailPath;
+  link.setAttribute('aria-label', `Open details: ${c.title}`);
+  link.draggable = false;
+  img.replaceWith(link);
+  // Keep reel crops inside their own viewport; source artwork stays intact elsewhere.
+  const artwork = document.createElement('span');
+  artwork.className = 'art-image';
+  artwork.append(img);
+  link.append(artwork);
+  const halo = document.createElement('span');
+  halo.className = 'art-halo';
+  halo.setAttribute('aria-hidden', 'true');
+  link.prepend(halo);
+}
 
 if (badgeSearch) {
   const badgeStatus = $('#badge-result-count');
@@ -46,75 +81,176 @@ if (badgeSearch) {
   });
 }
 
-function schedule() {
-  window.clearInterval(timer);
-  if (playing && filtered.length > 1 && !document.hidden && !hovered && onScreen) {
-    timer = window.setInterval(() => step(1, false), interval);
+
+/* ---------- 3D orbit ---------- */
+
+const autoAllowed = () => !reducedMotion.matches && filtered.length > 1 && !document.hidden && onScreen;
+const autoActive = () => autoAllowed() && !hovered && !focused && !dragging && !idleTimer;
+
+let stepAngle = Math.PI / 5;
+function measure() {
+  const width = reel.clientWidth || 600;
+  const narrow = width < 560;
+  radius = Math.min(430, Math.max(200, width * (narrow ? 0.56 : 0.6)));
+  stepAngle = narrow ? Math.PI / 3.75 : Math.PI / 5; // 48° on phones, 36° otherwise
+}
+
+function wrapDelta(i, count) {
+  // shortest signed distance from theta to slot i on the ring
+  let d = i - theta;
+  d = ((d % count) + count) % count;
+  if (d > count / 2) d -= count;
+  return d;
+}
+
+function layout() {
+  const count = filtered.length;
+  if (!count) return;
+  const activeIndex = ((Math.round(theta) % count) + count) % count;
+  const perspective = 1300;
+  const maxVisible = 2.55; // front tile + two on each side
+  for (const slide of slides) {
+    const i = filtered.findIndex(c => c.id === slide.dataset.id);
+    if (i < 0) { slide.style.display = 'none'; continue; }
+    const d = wrapDelta(i, count);
+    const a = d * stepAngle;
+    const cos = Math.cos(a), sin = Math.sin(a);
+    const facing = Math.max(0, cos);
+    if (cos < 0 || Math.abs(d) > maxVisible) { slide.style.display = 'none'; continue; }
+    const x = sin * radius;
+    const z = (cos - 1) * radius;
+    const y = (1 - cos) * -40;
+    const scale = 0.7 + 0.3 * facing ** 3;
+    const opacity = Math.min(1, Math.max(0, (maxVisible - Math.abs(d)) / 0.7));
+    slide.style.display = 'block';
+    slide.style.transform = `translate(-50%, -50%) perspective(${perspective}px) translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotateY(${(-a * 0.35).toFixed(3)}rad) scale(${scale.toFixed(3)})`;
+    slide.style.opacity = opacity.toFixed(3);
+    slide.style.zIndex = String(Math.round(1000 + z));
+    slide.style.filter = facing > 0.9 ? 'none' : `saturate(${(0.7 + 0.3 * facing).toFixed(2)}) brightness(${(0.9 + 0.1 * facing).toFixed(2)})`;
+    slide.classList.toggle('is-front', Math.abs(d) < 0.5);
   }
 }
 
-function setPlaying(value) {
-  playing = value;
-  const button = $('#play-toggle');
-  button.setAttribute('aria-label', playing ? 'Pause automatic rotation' : 'Play automatic rotation');
-  button.querySelector('span').textContent = playing ? 'Pause rotation' : 'Play rotation';
-  button.querySelector('use').setAttribute('href', `assets/icons.svg#${playing ? 'pause' : 'play'}`);
-  schedule();
+function animate(now) {
+  frame = null;
+  if (tween) {
+    const t = Math.min(1, (now - tween.start) / tween.duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    theta = tween.from + (tween.to - tween.from) * eased;
+    if (t >= 1) { theta = tween.to; tween = null; }
+  }
+  if (dragging) theta = dragging.theta;
+  layout();
+  if (tween || dragging) frame = window.requestAnimationFrame(animate);
+  else settle();
 }
 
-function render({ announce = false, animate = false } = {}) {
+function requestFrame() { if (!frame) frame = window.requestAnimationFrame(animate); }
+
+function glideTo(target, { duration = glide } = {}) {
+  if (reducedMotion.matches) { tween = null; theta = target; requestFrame(); return; }
+  tween = { from: theta, to: target, start: performance.now(), duration };
+  requestFrame();
+}
+
+function normalizeTheta() {
+  const count = filtered.length || 1;
+  theta = ((theta % count) + count) % count;
+}
+
+function settle() {
+  // called when motion stops: sync active card + aria, then arm the next automatic step
+  normalizeTheta();
+  const count = filtered.length;
+  if (!count) return;
+  const index = ((Math.round(theta) % count) + count) % count;
+  const id = filtered[index].id;
+  if (id !== activeId) { activeId = id; syncActive({ announce: !autoActive() }); }
+  armStep();
+}
+
+function armStep() {
+  window.clearTimeout(stepTimer);
+  updateStatus();
+  if (!autoActive() || tween || dragging) return;
+  stepTimer = window.setTimeout(() => { if (autoActive()) glideTo(Math.round(theta) + 1); }, dwell);
+}
+
+function updateStatus() {
+  if (!autoStatus) return;
+  const paused = !autoActive();
+  autoStatus.textContent = filtered.length < 2 ? '' : paused ? 'Paused' : 'Auto-rotating';
+  autoStatus.dataset.state = paused ? 'paused' : 'playing';
+  reel.classList.toggle('is-paused', paused);
+}
+
+function touch() {
+  // any human interaction: hold the orbit still, resume after a quiet period
+  window.clearTimeout(stepTimer);
+  window.clearTimeout(idleTimer);
+  idleTimer = window.setTimeout(() => { idleTimer = null; armStep(); }, idleResume);
+  updateStatus();
+}
+
+/* ---------- state + DOM sync ---------- */
+
+function syncActive({ announce = false } = {}) {
   const index = filtered.findIndex(c => c.id === activeId);
-  const nextId = filtered.length > 1 ? filtered[(index + 1) % filtered.length]?.id : null;
   for (const slide of slides) {
     const active = slide.dataset.id === activeId;
+    const i = filtered.findIndex(c => c.id === slide.dataset.id);
+    if (i >= 0) slide.setAttribute('aria-label', `${i + 1} of ${filtered.length}: ${filtered[i].title}`);
     slide.classList.toggle('is-active', active);
-    slide.classList.toggle('is-next', !active && slide.dataset.id === nextId);
-    slide.classList.remove('is-moving');
-    slide.inert = !active;
-    if (active) {
-      slide.removeAttribute('aria-hidden');
-      if (animate && !reducedMotion.matches) {
-        void slide.offsetWidth;
-        slide.classList.add('is-moving');
-      }
-    } else slide.setAttribute('aria-hidden', 'true');
+    if (active) slide.removeAttribute('aria-hidden'); else slide.setAttribute('aria-hidden', 'true');
+    for (const el of slide.querySelectorAll('a, button')) {
+      if (active) el.removeAttribute('tabindex'); else el.setAttribute('tabindex', '-1');
+    }
   }
-  $('#slide-stack').hidden = !filtered.length;
-  $('.reel-empty').hidden = Boolean(filtered.length);
   $('#position').textContent = filtered.length ? `${String(index + 1).padStart(2, '0')} / ${String(filtered.length).padStart(2, '0')}` : '00 / 00';
+  for (const [i, button] of [...$('#pagination').children].entries()) button.setAttribute('aria-current', String(i === index));
+  if (announce && index >= 0) $('#reel-announcement').textContent = `${index + 1} of ${filtered.length}: ${filtered[index].title}, ${filtered[index].issuer}.`;
+}
+
+function render() {
+  stack.hidden = !filtered.length;
+  $('.reel-empty').hidden = Boolean(filtered.length);
   $('#previous').disabled = $('#next').disabled = filtered.length < 2;
-  $('#play-toggle').disabled = filtered.length < 2;
-  $('#pagination').replaceChildren(...filtered.map((c, i) => {
+  $('#pagination').replaceChildren(...filtered.map(c => {
     const button = document.createElement('button');
     button.type = 'button';
     button.setAttribute('aria-label', `Show ${c.title}`);
-    button.setAttribute('aria-current', String(c.id === activeId));
     button.addEventListener('click', () => select(c.id));
     return button;
   }));
-  if (announce && index >= 0) $('#reel-announcement').textContent = `${index + 1} of ${filtered.length}: ${filtered[index].title}, ${filtered[index].issuer}.`;
-  schedule();
+  const index = Math.max(0, filtered.findIndex(c => c.id === activeId));
+  theta = index;
+  tween = null;
+  measure();
+  syncActive();
+  layout();
+  armStep();
 }
 
-function select(id) {
-  if (!filtered.some(c => c.id === id)) return;
+function select(id, { manual = true } = {}) {
+  const index = filtered.findIndex(c => c.id === id);
+  if (index < 0) return;
   const focusedDot = $('#pagination').contains(document.activeElement);
-  setPlaying(false);
+  if (manual) touch();
+  const d = wrapDelta(index, filtered.length);
   activeId = id;
-  render({ announce: true, animate: true });
+  syncActive({ announce: manual });
+  glideTo(theta + d);
   if (focusedDot) $('#pagination button[aria-current="true"]').focus({ preventScroll: true });
 }
 
-function step(direction, manual = true) {
+function step(direction) {
   if (filtered.length < 2) return;
   const current = filtered.findIndex(c => c.id === activeId);
-  const id = filtered[(current + direction + filtered.length) % filtered.length].id;
-  if (manual) select(id);
-  else { activeId = id; render({ animate: true }); }
+  select(filtered[(current + direction + filtered.length) % filtered.length].id);
 }
 
 function applyFilters() {
-  setPlaying(false);
+  touch();
   const search = query.trim().toLocaleLowerCase();
   filtered = credentials.filter(c => (category === 'all' || (c.categories || [c.category]).includes(category)) && (progressStatus === 'all' || (c.progressStatus || 'completed') === progressStatus) && [c.title, c.issuer, ...(c.categories || [c.category]), c.kind, (c.progressStatus || '').replaceAll('-', ' '), ...c.topics].join(' ').toLocaleLowerCase().includes(search));
   if (!filtered.some(c => c.id === activeId)) activeId = filtered[0]?.id || null;
@@ -126,9 +262,10 @@ function applyFilters() {
   render();
 }
 
+/* ---------- interaction ---------- */
+
 $('#previous').addEventListener('click', () => step(-1));
 $('#next').addEventListener('click', () => step(1));
-$('#play-toggle').addEventListener('click', () => setPlaying(!playing));
 $('#search').addEventListener('input', event => { query = event.target.value; applyFilters(); });
 $('#status-filter').addEventListener('change', event => { progressStatus = event.target.value; applyFilters(); });
 for (const button of document.querySelectorAll('[data-category]')) button.addEventListener('click', () => { category = button.dataset.category; applyFilters(); });
@@ -142,41 +279,58 @@ reel.addEventListener('keydown', event => {
     event.preventDefault(); step(event.key === 'ArrowRight' ? 1 : -1);
   }
 });
-reel.addEventListener('pointerdown', event => { startPointer = { x: event.clientX, y: event.clientY }; });
-reel.addEventListener('pointerup', event => {
-  if (!startPointer) return;
-  const dx = event.clientX - startPointer.x;
-  const dy = event.clientY - startPointer.y;
-  startPointer = null;
-  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) { event.preventDefault(); step(dx < 0 ? 1 : -1); }
-});
-reel.addEventListener('pointercancel', () => { startPointer = null; });
-showcase.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; schedule(); } });
-showcase.addEventListener('pointerleave', () => { hovered = false; schedule(); });
-showcase.addEventListener('focusin', event => { if (!event.target.closest('#play-toggle')) setPlaying(false); });
-document.addEventListener('visibilitychange', schedule);
-new IntersectionObserver(entries => { onScreen = entries[0].isIntersecting; schedule(); }, { threshold: 0.25 }).observe(showcase);
-reducedMotion.addEventListener('change', event => { if (event.matches) setPlaying(false); });
 
-function setDisplay(value) {
-  document.body.classList.toggle('display-mode', value);
-  const button = $('#display-toggle');
-  button.setAttribute('aria-pressed', String(value));
-  button.querySelector('span').textContent = value ? 'Exit display' : 'Display mode';
-  button.querySelector('use').setAttribute('href', `assets/icons.svg#${value ? 'close' : 'expand'}`);
-  if (value) {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    setPlaying(!reducedMotion.matches);
+// Drag / swipe spins the orbit directly; a tap on a side card brings it to the front.
+const cardWidth = () => Math.max(160, (slides[0]?.offsetWidth || 320) * 0.9);
+reel.addEventListener('pointerdown', event => {
+  if (event.button !== 0 || event.target.closest('a, button')) return;
+  touch();
+  window.clearTimeout(stepTimer);
+  tween = null;
+  dragging = { x: event.clientX, y: event.clientY, startTheta: theta, theta, moved: false, pointerId: event.pointerId, target: event.target.closest('.credential-slide') };
+  requestFrame();
+});
+reel.addEventListener('pointermove', event => {
+  if (!dragging || event.pointerId !== dragging.pointerId) return;
+  const dx = event.clientX - dragging.x;
+  if (!dragging.moved && Math.abs(dx) > 6) { dragging.moved = true; try { reel.setPointerCapture(event.pointerId); } catch {} }
+  if (dragging.moved) { reel.classList.add('is-dragging'); dragging.theta = dragging.startTheta - dx / cardWidth(); requestFrame(); }
+});
+const endDrag = event => {
+  if (!dragging || (event && event.pointerId !== dragging.pointerId)) return;
+  const { moved, target, theta: dragTheta } = dragging;
+  dragging = null;
+  reel.classList.remove('is-dragging');
+  if (moved) {
+    theta = dragTheta;
+    const rounded = Math.round(theta);
+    const index = ((rounded % filtered.length) + filtered.length) % filtered.length;
+    activeId = filtered[index]?.id || activeId;
+    syncActive({ announce: true });
+    glideTo(rounded, { duration: 420 });
+  } else if (target && target.dataset.id !== activeId) {
+    select(target.dataset.id);
+  } else {
+    requestFrame();
   }
-}
-$('#display-toggle').addEventListener('click', () => setDisplay(!document.body.classList.contains('display-mode')));
+  touch();
+};
+reel.addEventListener('pointerup', endDrag);
+reel.addEventListener('pointercancel', endDrag);
+reel.addEventListener('lostpointercapture', () => { if (dragging) endDrag(); });
+
+showcase.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; armStep(); } });
+showcase.addEventListener('pointerleave', () => { hovered = false; armStep(); });
+showcase.addEventListener('focusin', () => { focused = true; armStep(); });
+showcase.addEventListener('focusout', event => { if (!showcase.contains(event.relatedTarget)) { focused = false; armStep(); } });
+document.addEventListener('visibilitychange', armStep);
+new IntersectionObserver(entries => { onScreen = entries[0].isIntersecting; armStep(); }, { threshold: 0.25 }).observe(showcase);
+reducedMotion.addEventListener('change', () => { tween = null; requestFrame(); armStep(); });
+window.addEventListener('resize', () => { measure(); layout(); });
 document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && document.body.classList.contains('display-mode')) {
-    setDisplay(false); $('#display-toggle').focus();
-  }
-  if (event.key === '/' && !event.ctrlKey && !event.metaKey && !document.body.classList.contains('display-mode') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+  if (event.key === '/' && !event.ctrlKey && !event.metaKey && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
     event.preventDefault(); $('#search').focus();
   }
 });
-setPlaying(playing);
+
 render();
