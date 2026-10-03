@@ -47,7 +47,11 @@ for (const slide of slides) {
   link.setAttribute('aria-label', `Open details: ${c.title}`);
   link.draggable = false;
   img.replaceWith(link);
-  link.append(img);
+  // Keep reel crops inside their own viewport; source artwork stays intact elsewhere.
+  const artwork = document.createElement('span');
+  artwork.className = 'art-image';
+  artwork.append(img);
+  link.append(artwork);
   const halo = document.createElement('span');
   halo.className = 'art-halo';
   halo.setAttribute('aria-hidden', 'true');
