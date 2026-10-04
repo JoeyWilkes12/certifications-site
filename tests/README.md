@@ -18,6 +18,19 @@ JSON data, reduced motion, image loading, horizontal overflow, and console
 errors. Full viewport, tile, and reel screenshots go to
 `output/playwright/reel-completion-dates/<width>/`.
 
+`reel-swipe.js` checks 50px swipes from artwork in both directions, intermediate
+card movement, one-tile snapping, hidden-first-card geometry, caption gestures,
+short gestures, cancellation, first/last wrapping, zero/one/multiple results,
+buttons, keyboard control, reduced motion, ordinary artwork-link taps, and
+console errors. Run it in the desktop and iPhone/WebKit sessions and in a
+Chromium touch session opened with `--browser=chrome --device='Pixel 7'`, resized
+to 390×844. The Chromium touch session uses trusted native CDP touch input and
+requires vertical page scrolling to work. WebKit uses explicitly reported
+synthetic pointer events for swipe logic, plus a real touchscreen tap for
+navigation; that run does not verify native WebKit swipe arbitration or scroll.
+Desktop uses mouse input, with synthetic pointer cancellation. Screenshots go
+to `output/playwright/reel-swipe/<width>-<input-mode>/`.
+
 Example after starting a local server on port 4380:
 
 ```bash
