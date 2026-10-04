@@ -1,5 +1,27 @@
 # Reel regression checks
 
+The same browser matrix verifies the portfolio theme. `portfolio-theme.js`
+checks exact source colors and font stacks, OS light/dark defaults, explicit
+preference persistence across reload and detail-page navigation, actual text
+and keyboard-focus contrast, 44px primary controls, every front-card caption,
+control collisions, all 17 reel records, all 36 learning entries, and motion
+preferences. It checks title line bounds independently from CSS line boxes;
+visible font overflow is not misreported as clipping. Review screenshots for
+both themes are in `output/playwright/portfolio-theme/<width>/`.
+
+`theme-resilience.js` creates isolated contexts using the caller’s viewport,
+mobile user agent, pixel ratio and touch capability. With JavaScript disabled,
+it checks all pre-rendered records, both OS appearances, actual native LinkedIn
+disclosures and PDF evidence, credential artwork and return navigation. It also
+blocks browser storage reads/writes and checks usable theme controls and
+navigation. Its screenshots are in `output/playwright/theme-resilience/<width>/`.
+
+`node tests/theme-source.mjs` verifies the upstream token SHA-256, exact
+namespace transformation and standalone stylesheet loading on all 18 pages.
+Run it with `node tests/static-content.mjs` before the browser matrix. The
+existing reel, swipe and learning callbacks below remain the behavior checks;
+the theme callbacks add coverage for the material risks introduced by the port.
+
 These files are Playwright CLI callbacks. Open the running localhost site,
 take a fresh snapshot, then pass a callback's contents to `playwright-cli run-code`.
 Run it once at 1440px in Chromium and once at 390px with the complete iPhone 15
@@ -9,6 +31,17 @@ WebKit device profile.
 reduced motion, halo layering, image loading, and horizontal overflow. It also
 verifies that collection thumbnails and credential subpages keep their original
 image treatment. Screenshots go to `output/playwright/reel-artwork/<width>/`.
+
+`reel-badge-containment.js` checks all 17 front selections in both themes and
+motion preferences at 1440px Chromium, 390px iPhone WebKit, and the reported
+621×748 viewport. It measures square side mounts, artwork, halos, pulse glow,
+hover scaling and visible keyboard focus, while preserving the front card's
+original frame and asset-specific crops. Layout targets remain at least 44px;
+the exposed Google/Anthropic neighbors beside AWS also pass projected 44px
+target checks. Farther background tiles are measured without asserting that
+every perspective-scaled target is 44px. Real taps/clicks verify that side-tile
+padding selects a card and artwork links open its permanent detail page.
+Screenshots go to `output/playwright/reel-badge-containment/<width>/`.
 
 `reel-completion-dates.js` checks all 17 reel tiles and their pre-rendered HTML.
 It verifies ten exact issuer-backed completion dates, the undated completed

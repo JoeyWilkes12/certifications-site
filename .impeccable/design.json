@@ -1,0 +1,574 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T19:12:36Z",
+  "title": "Design System: Joey Wilkes — Certification Gallery",
+  "extensions": {
+    "colorMeta": {
+      "gold": {
+        "role": "primary",
+        "displayName": "Portfolio Gold",
+        "tonalRamp": [
+          "oklch(15% 0.11441 81.81)",
+          "oklch(26% 0.11441 81.81)",
+          "oklch(38% 0.11441 81.81)",
+          "oklch(49% 0.11441 81.81)",
+          "oklch(61% 0.11441 81.81)",
+          "oklch(72% 0.11441 81.81)",
+          "oklch(84% 0.11441 81.81)",
+          "oklch(95% 0.11441 81.81)"
+        ]
+      },
+      "gold-soft": {
+        "role": "primary",
+        "displayName": "Soft Gold",
+        "tonalRamp": [
+          "oklch(15% 0.09483 88.83)",
+          "oklch(26% 0.09483 88.83)",
+          "oklch(38% 0.09483 88.83)",
+          "oklch(49% 0.09483 88.83)",
+          "oklch(61% 0.09483 88.83)",
+          "oklch(72% 0.09483 88.83)",
+          "oklch(84% 0.09483 88.83)",
+          "oklch(95% 0.09483 88.83)"
+        ]
+      },
+      "gold-ink": {
+        "role": "primary",
+        "displayName": "Gold Ink",
+        "tonalRamp": [
+          "oklch(15% 0.08784 72.27)",
+          "oklch(26% 0.08784 72.27)",
+          "oklch(38% 0.08784 72.27)",
+          "oklch(49% 0.08784 72.27)",
+          "oklch(61% 0.08784 72.27)",
+          "oklch(72% 0.08784 72.27)",
+          "oklch(84% 0.08784 72.27)",
+          "oklch(95% 0.08784 72.27)"
+        ]
+      },
+      "pink": {
+        "role": "secondary",
+        "displayName": "Expressive Pink",
+        "tonalRamp": [
+          "oklch(15% 0.20153 3.87)",
+          "oklch(26% 0.20153 3.87)",
+          "oklch(38% 0.20153 3.87)",
+          "oklch(49% 0.20153 3.87)",
+          "oklch(61% 0.20153 3.87)",
+          "oklch(72% 0.20153 3.87)",
+          "oklch(84% 0.20153 3.87)",
+          "oklch(95% 0.20153 3.87)"
+        ]
+      },
+      "pink-deep": {
+        "role": "secondary",
+        "displayName": "Deep Pink",
+        "tonalRamp": [
+          "oklch(15% 0.19384 3.36)",
+          "oklch(26% 0.19384 3.36)",
+          "oklch(38% 0.19384 3.36)",
+          "oklch(49% 0.19384 3.36)",
+          "oklch(61% 0.19384 3.36)",
+          "oklch(72% 0.19384 3.36)",
+          "oklch(84% 0.19384 3.36)",
+          "oklch(95% 0.19384 3.36)"
+        ]
+      },
+      "pink-ink": {
+        "role": "secondary",
+        "displayName": "Pink Ink",
+        "tonalRamp": [
+          "oklch(15% 0.16937 3.76)",
+          "oklch(26% 0.16937 3.76)",
+          "oklch(38% 0.16937 3.76)",
+          "oklch(49% 0.16937 3.76)",
+          "oklch(61% 0.16937 3.76)",
+          "oklch(72% 0.16937 3.76)",
+          "oklch(84% 0.16937 3.76)",
+          "oklch(95% 0.16937 3.76)"
+        ]
+      },
+      "navy-950": {
+        "role": "neutral",
+        "displayName": "Midnight Navy",
+        "tonalRamp": [
+          "oklch(15% 0.03683 252.70)",
+          "oklch(26% 0.03683 252.70)",
+          "oklch(38% 0.03683 252.70)",
+          "oklch(49% 0.03683 252.70)",
+          "oklch(61% 0.03683 252.70)",
+          "oklch(72% 0.03683 252.70)",
+          "oklch(84% 0.03683 252.70)",
+          "oklch(95% 0.03683 252.70)"
+        ]
+      },
+      "navy-900": {
+        "role": "neutral",
+        "displayName": "Panel Navy",
+        "tonalRamp": [
+          "oklch(15% 0.05473 257.07)",
+          "oklch(26% 0.05473 257.07)",
+          "oklch(38% 0.05473 257.07)",
+          "oklch(49% 0.05473 257.07)",
+          "oklch(61% 0.05473 257.07)",
+          "oklch(72% 0.05473 257.07)",
+          "oklch(84% 0.05473 257.07)",
+          "oklch(95% 0.05473 257.07)"
+        ]
+      },
+      "navy-800": {
+        "role": "neutral",
+        "displayName": "Raised Navy",
+        "tonalRamp": [
+          "oklch(15% 0.06915 255.78)",
+          "oklch(26% 0.06915 255.78)",
+          "oklch(38% 0.06915 255.78)",
+          "oklch(49% 0.06915 255.78)",
+          "oklch(61% 0.06915 255.78)",
+          "oklch(72% 0.06915 255.78)",
+          "oklch(84% 0.06915 255.78)",
+          "oklch(95% 0.06915 255.78)"
+        ]
+      },
+      "navy-700": {
+        "role": "neutral",
+        "displayName": "Secondary Navy",
+        "tonalRamp": [
+          "oklch(15% 0.07902 254.29)",
+          "oklch(26% 0.07902 254.29)",
+          "oklch(38% 0.07902 254.29)",
+          "oklch(49% 0.07902 254.29)",
+          "oklch(61% 0.07902 254.29)",
+          "oklch(72% 0.07902 254.29)",
+          "oklch(84% 0.07902 254.29)",
+          "oklch(95% 0.07902 254.29)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Action Ink",
+        "tonalRamp": [
+          "oklch(15% 0.01081 259.64)",
+          "oklch(26% 0.01081 259.64)",
+          "oklch(38% 0.01081 259.64)",
+          "oklch(49% 0.01081 259.64)",
+          "oklch(61% 0.01081 259.64)",
+          "oklch(72% 0.01081 259.64)",
+          "oklch(84% 0.01081 259.64)",
+          "oklch(95% 0.01081 259.64)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "tonalRamp": [
+          "oklch(15% 0.01312 82.40)",
+          "oklch(26% 0.01312 82.40)",
+          "oklch(38% 0.01312 82.40)",
+          "oklch(49% 0.01312 82.40)",
+          "oklch(61% 0.01312 82.40)",
+          "oklch(72% 0.01312 82.40)",
+          "oklch(84% 0.01312 82.40)",
+          "oklch(95% 0.01312 82.40)"
+        ]
+      },
+      "paper-muted": {
+        "role": "neutral",
+        "displayName": "Muted Paper",
+        "tonalRamp": [
+          "oklch(15% 0.00550 106.52)",
+          "oklch(26% 0.00550 106.52)",
+          "oklch(38% 0.00550 106.52)",
+          "oklch(49% 0.00550 106.52)",
+          "oklch(61% 0.00550 106.52)",
+          "oklch(72% 0.00550 106.52)",
+          "oklch(84% 0.00550 106.52)",
+          "oklch(95% 0.00550 106.52)"
+        ]
+      },
+      "light-panel": {
+        "role": "neutral",
+        "displayName": "Light Panel",
+        "tonalRamp": [
+          "oklch(15% 0.01732 84.59)",
+          "oklch(26% 0.01732 84.59)",
+          "oklch(38% 0.01732 84.59)",
+          "oklch(49% 0.01732 84.59)",
+          "oklch(61% 0.01732 84.59)",
+          "oklch(72% 0.01732 84.59)",
+          "oklch(84% 0.01732 84.59)",
+          "oklch(95% 0.01732 84.59)"
+        ]
+      },
+      "light-raised": {
+        "role": "neutral",
+        "displayName": "White Mount",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(26% 0.00000 0.00)",
+          "oklch(38% 0.00000 0.00)",
+          "oklch(49% 0.00000 0.00)",
+          "oklch(61% 0.00000 0.00)",
+          "oklch(72% 0.00000 0.00)",
+          "oklch(84% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Dark Divider",
+        "tonalRamp": [
+          "oklch(15% 0.01312 82.40 / 0.18)",
+          "oklch(26% 0.01312 82.40 / 0.18)",
+          "oklch(38% 0.01312 82.40 / 0.18)",
+          "oklch(49% 0.01312 82.40 / 0.18)",
+          "oklch(61% 0.01312 82.40 / 0.18)",
+          "oklch(72% 0.01312 82.40 / 0.18)",
+          "oklch(84% 0.01312 82.40 / 0.18)",
+          "oklch(95% 0.01312 82.40 / 0.18)"
+        ]
+      },
+      "dark-border-strong": {
+        "role": "neutral",
+        "displayName": "Dark Control Border",
+        "tonalRamp": [
+          "oklch(15% 0.11441 81.81 / 0.42)",
+          "oklch(26% 0.11441 81.81 / 0.42)",
+          "oklch(38% 0.11441 81.81 / 0.42)",
+          "oklch(49% 0.11441 81.81 / 0.42)",
+          "oklch(61% 0.11441 81.81 / 0.42)",
+          "oklch(72% 0.11441 81.81 / 0.42)",
+          "oklch(84% 0.11441 81.81 / 0.42)",
+          "oklch(95% 0.11441 81.81 / 0.42)"
+        ]
+      },
+      "light-border": {
+        "role": "neutral",
+        "displayName": "Light Divider",
+        "tonalRamp": [
+          "oklch(15% 0.03683 252.70 / 0.2)",
+          "oklch(26% 0.03683 252.70 / 0.2)",
+          "oklch(38% 0.03683 252.70 / 0.2)",
+          "oklch(49% 0.03683 252.70 / 0.2)",
+          "oklch(61% 0.03683 252.70 / 0.2)",
+          "oklch(72% 0.03683 252.70 / 0.2)",
+          "oklch(84% 0.03683 252.70 / 0.2)",
+          "oklch(95% 0.03683 252.70 / 0.2)"
+        ]
+      },
+      "light-border-strong": {
+        "role": "neutral",
+        "displayName": "Light Control Border",
+        "tonalRamp": [
+          "oklch(15% 0.03683 252.70 / 0.46)",
+          "oklch(26% 0.03683 252.70 / 0.46)",
+          "oklch(38% 0.03683 252.70 / 0.46)",
+          "oklch(49% 0.03683 252.70 / 0.46)",
+          "oklch(61% 0.03683 252.70 / 0.46)",
+          "oklch(72% 0.03683 252.70 / 0.46)",
+          "oklch(84% 0.03683 252.70 / 0.46)",
+          "oklch(95% 0.03683 252.70 / 0.46)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Showcase headline."
+      },
+      "display-mobile": {
+        "displayName": "Display Mobile",
+        "purpose": "Showcase headline at 700px and below."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Permanent credential title; 40px mobile."
+      },
+      "section-title": {
+        "displayName": "Section Title",
+        "purpose": "Primary collection heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Front-card caption; 26px at 1100px and below."
+      },
+      "title-mobile": {
+        "displayName": "Title Mobile",
+        "purpose": "Front-card caption at 700px and below."
+      },
+      "row-title": {
+        "displayName": "Row Title",
+        "purpose": "Evidence row title; 16px mobile."
+      },
+      "badge-title": {
+        "displayName": "Badge Title",
+        "purpose": "Disclosure title; 18px mobile."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "Issuer excerpt with retained 1.6 leading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Page baseline with context-specific reading sizes."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Primary actions and navigation."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Issuer label; facts retain context-specific sizes."
+      },
+      "position": {
+        "displayName": "Position",
+        "purpose": "Orbit position, with tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "showcase-offset",
+        "value": "12px 12px 0 var(--portfolio-pink-deep)",
+        "purpose": "Portfolio-family feature offset; removed in presentation mode."
+      },
+      {
+        "name": "orbit-card",
+        "value": "0 22px 45px color-mix(in srgb, var(--portfolio-navy-950) 25%, transparent)",
+        "purpose": "Base orbit card."
+      },
+      {
+        "name": "orbit-front",
+        "value": "0 30px 60px color-mix(in srgb, var(--portfolio-navy-950) 40%, transparent)",
+        "purpose": "Front-card depth."
+      },
+      {
+        "name": "orbit-side",
+        "value": "0 14px 30px color-mix(in srgb, var(--portfolio-navy-950) 19%, transparent)",
+        "purpose": "Side-tile depth."
+      },
+      {
+        "name": "orbit-hover",
+        "value": "0 20px 40px color-mix(in srgb, var(--portfolio-navy-950) 33%, transparent)",
+        "purpose": "Inactive artwork hover."
+      },
+      {
+        "name": "artwork-focus",
+        "value": "0 0 0 5px #fff, 0 0 0 8px var(--portfolio-gold)",
+        "purpose": "Front artwork only: white and gold rings accompany the navy outline. Side thumbnails use the navy outline inside the link at a -3px offset, with no outer shadow rings."
+      }
+    ],
+    "motion": [
+      {
+        "name": "orbit-dwell",
+        "value": "3600ms",
+        "purpose": "Rest before automatic advance."
+      },
+      {
+        "name": "orbit-glide",
+        "value": "900ms",
+        "purpose": "One orbit step; reduced motion selects immediately."
+      },
+      {
+        "name": "orbit-easing",
+        "value": "1 - (1 - t)^3",
+        "purpose": "JavaScript cubic ease-out interpolation."
+      },
+      {
+        "name": "interaction-resume",
+        "value": "6000ms",
+        "purpose": "Quiet period before automatic rotation resumes."
+      },
+      {
+        "name": "gesture-settle",
+        "value": "320ms",
+        "purpose": "Swipe/drag settle."
+      },
+      {
+        "name": "card-shadow",
+        "value": "300ms",
+        "purpose": "Retained card shadow transition."
+      },
+      {
+        "name": "caption-enter",
+        "value": "400ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Caption opacity and 8px vertical arrival."
+      },
+      {
+        "name": "artwork-hover",
+        "value": "250ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Artwork-link scale to 1.05."
+      },
+      {
+        "name": "halo-pulse",
+        "value": "2400ms ease-out infinite",
+        "purpose": "Front gold halo; side thumbnails retain 3200ms and hover/focus 1200ms through the contained border/inward-glow pulse."
+      },
+      {
+        "name": "halo-spin",
+        "value": "18000ms linear infinite",
+        "purpose": "Dashed halo rotation."
+      },
+      {
+        "name": "auto-status",
+        "value": "1800ms ease-out infinite",
+        "purpose": "Automatic rotation status pulse."
+      },
+      {
+        "name": "disclosure-marker",
+        "value": "140ms ease",
+        "purpose": "Native-details marker turn."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "No auto-rotation, CSS animations/transitions or smooth scrolling; manual selection has no glide."
+      },
+      {
+        "name": "halo-pulse-contained",
+        "value": "3200ms ease-out infinite; hover/focus 1200ms",
+        "purpose": "Side thumbnails only: gold border changes from 40% to 75%, with inset glow from 10px to 14px at 8%; dashed rotation remains 18000ms. The square white mount clips the halo, thumbnail image frames are 124px/108px/80px, link padding is 2px and dashed-ring inset is -1px. Record-detail hrefs and targets larger than 44px remain; reduced motion removes animation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "gallery-mobile",
+        "value": "700px"
+      },
+      {
+        "name": "evidence-and-reading-stack",
+        "value": "1000px"
+      },
+      {
+        "name": "compact-showcase",
+        "value": "1100px"
+      },
+      {
+        "name": "compact-evidence-columns",
+        "value": "1200px"
+      },
+      {
+        "name": "large-presentation",
+        "value": "1500px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Gold action using the gallery padding and visible keyboard focus.",
+      "html": "<button class=\"ds-primary\">Show all credentials</button>",
+      "css": ".ds-primary{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:13px;line-height:1.6;font-weight:600;background:var(--portfolio-accent, #d9ad59);color:var(--portfolio-text-on-accent, #05070b);border:0;border-radius:var(--portfolio-radius-control, 0);padding:13px 18px;min-height:var(--portfolio-touch-target, 44px);cursor:pointer;}.ds-primary:hover{background:var(--portfolio-accent-hover, #f0d48d);}.ds-primary:disabled{opacity:.45;cursor:default;}.ds-primary:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:5px;}"
+    },
+    {
+      "name": "Quiet action",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Secondary utility with paired panel and raised hover surfaces.",
+      "html": "<button class=\"ds-quiet\">Exit presentation</button>",
+      "css": ".ds-quiet{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:13px;line-height:1.6;font-weight:600;background:var(--portfolio-surface-panel, #081a33);color:var(--portfolio-text-primary, #f5f0e7);border:1px solid var(--portfolio-border-strong, rgba(217, 173, 89, 0.42));border-radius:var(--portfolio-radius-control, 0);padding:11px 15px;min-height:var(--portfolio-touch-target, 44px);cursor:pointer;}.ds-quiet:hover{background:var(--portfolio-surface-raised, #0d2748);border-color:var(--portfolio-text-accent, #f0d48d);}.ds-quiet:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:5px;}@media(max-width:700px){.ds-quiet{padding:10px 8px;font-size:9px;}}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Raised 44px field; source shortcut hint disappears on mobile.",
+      "html": "<label class=\"ds-search\"><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4 4\"/></svg><input class=\"ds-search-input\" type=\"search\" placeholder=\"Find a credential\" aria-label=\"Search credentials\"><kbd class=\"ds-shortcut\" aria-hidden=\"true\">/</kbd></label>",
+      "css": ".ds-search{display:flex;align-items:center;gap:9px;background:var(--portfolio-surface-raised, #0d2748);color:var(--portfolio-text-secondary, #c8c8c4);border:1px solid var(--portfolio-border-strong, rgba(217, 173, 89, 0.42));border-radius:var(--portfolio-radius-control, 0);padding:0 12px;min-width:234px;height:44px;}.ds-search-input{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:12px;line-height:1.6;border:0;background:none;min-width:0;width:100%;color:var(--portfolio-text-primary, #f5f0e7);padding:12px 0;}.ds-search-input::placeholder{color:var(--portfolio-text-secondary, #c8c8c4);}.ds-shortcut{font-family:var(--portfolio-mono, \"SFMono-Regular\", \"Cascadia Code\", \"Roboto Mono\", monospace);font-size:10px;border:1px solid var(--portfolio-border, rgba(245, 240, 231, 0.18));border-radius:var(--portfolio-radius-control, 0);padding:0 5px;}.ds-search-input:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:0;}@media(max-width:700px){.ds-search{min-width:0;width:100%;}.ds-shortcut{display:none;}}"
+    },
+    {
+      "name": "Status select",
+      "kind": "input",
+      "refersTo": "status-select",
+      "description": "Native selection behavior with appearance:none, a 44px minimum and non-interactive chevron.",
+      "html": "<label class=\"ds-status-filter\">Status<select class=\"ds-status-select\" aria-label=\"Filter by completion status\"><option>All statuses</option><option>Completed</option><option>In progress</option><option>To do</option></select></label>",
+      "css": ".ds-status-filter{position:relative;display:inline-flex;align-items:center;gap:7px;font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:11px;line-height:1.6;color:var(--portfolio-text-secondary, #c8c8c4);}.ds-status-select{appearance:none;font:inherit;min-height:var(--portfolio-touch-target, 44px);max-width:140px;border:1px solid var(--portfolio-border-strong, rgba(217, 173, 89, 0.42));border-radius:var(--portfolio-radius-control, 0);padding:9px 28px 9px 10px;color:var(--portfolio-text-primary, #f5f0e7);background:var(--portfolio-surface-raised, #0d2748);cursor:pointer;}.ds-status-filter::after{content:\"\";position:absolute;right:12px;bottom:19px;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);pointer-events:none;}.ds-status-select:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:4px;}@media(max-width:700px){.ds-status-filter{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:4px;font-size:9px;}.ds-status-select{font-size:11px;padding:9px 28px 9px 8px;max-width:120px;}}"
+    },
+    {
+      "name": "Collection navigation",
+      "kind": "nav",
+      "refersTo": "collection-navigation",
+      "description": "Quiet semibold text link; the real header hides this link at 700px.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Collection navigation\"><a class=\"ds-nav-link\" href=\"#ds-collection-sample\">Browse collection <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14m-6-6 6 6 6-6\"/></svg></a></nav><section id=\"ds-collection-sample\" class=\"ds-nav-destination\" aria-label=\"Sample collection\">Credential collection</section>",
+      "css": ".ds-nav{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);color:var(--portfolio-text-primary, #f5f0e7);}.ds-nav-link{display:inline-flex;align-items:center;gap:9px;min-height:var(--portfolio-touch-target, 44px);font-size:13px;line-height:1.6;font-weight:600;color:inherit;text-decoration:none;}.ds-nav-link:hover{text-decoration:underline;text-underline-offset:5px;}.ds-nav-destination{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:12px;color:var(--portfolio-text-secondary, #c8c8c4);border-top:1px solid var(--portfolio-border, rgba(245, 240, 231, 0.18));padding:12px 0;}.ds-nav-link:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:5px;}@media(max-width:700px){.ds-nav{display:none;}}"
+    },
+    {
+      "name": "Category filters",
+      "kind": "chip",
+      "refersTo": "filter-selected",
+      "description": "Square category toggle; selected state uses aria-pressed.",
+      "html": "<div class=\"ds-filters\" aria-label=\"Sample category filters\"><button class=\"ds-filter\" aria-pressed=\"true\">All <span class=\"ds-count\">17</span></button><button class=\"ds-filter\" aria-pressed=\"false\">Cloud</button></div>",
+      "css": ".ds-filters{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.ds-filter{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:12px;line-height:1.6;border:1px solid transparent;border-radius:var(--portfolio-radius-control, 0);background:transparent;color:var(--portfolio-text-secondary, #c8c8c4);padding:10px 13px;min-height:var(--portfolio-touch-target, 44px);white-space:nowrap;cursor:pointer;}.ds-filter[aria-pressed=\"true\"]{background:var(--portfolio-accent, #d9ad59);color:var(--portfolio-text-on-accent, #05070b);}.ds-filter:hover:not([aria-pressed=\"true\"]){background:var(--portfolio-surface-raised, #0d2748);color:var(--portfolio-text-primary, #f5f0e7);border-color:var(--portfolio-border-strong, rgba(217, 173, 89, 0.42));}.ds-count{font-size:10px;opacity:.75;margin-left:5px;}.ds-filter:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:5px;}@media(max-width:700px){.ds-filters{gap:3px;}.ds-filter{padding:8px 9px;font-size:10px;}}"
+    },
+    {
+      "name": "Learning status labels",
+      "kind": "chip",
+      "refersTo": "record-status",
+      "description": "Explicit state text with accent, expressive and panel treatments.",
+      "html": "<div class=\"ds-statuses\"><span class=\"ds-status ds-completed\">Completed</span><span class=\"ds-status ds-progress\">In progress</span><span class=\"ds-status ds-planned\">To do</span></div>",
+      "css": ".ds-statuses{display:flex;flex-wrap:wrap;gap:8px;}.ds-status{display:inline-flex;align-items:center;font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:11px;font-weight:600;line-height:1.4;padding:4px 8px;border-radius:var(--portfolio-radius-control, 0);}.ds-completed{background:color-mix(in srgb,var(--portfolio-accent, #d9ad59) 12%,var(--portfolio-surface-raised, #0d2748));color:var(--portfolio-text-accent, #f0d48d);}.ds-progress{background:color-mix(in srgb,var(--portfolio-expressive, #ff5c91) 8%,var(--portfolio-surface-raised, #0d2748));color:var(--portfolio-text-expressive, #ff5c91);}.ds-planned{background:var(--portfolio-surface-panel, #081a33);color:var(--portfolio-text-secondary, #c8c8c4);}"
+    },
+    {
+      "name": "Front credential card",
+      "kind": "card",
+      "refersTo": "front-card",
+      "description": "Front-card caption and white mount; inline SVG illustrates the mount and is not an issuer-artwork replacement.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-art\"><svg viewBox=\"0 0 56 56\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 7.5h17l10 10v31H15z\"/><path d=\"M32 8v11h10M21 28h15M21 34h15M21 40h10\"/></svg></div><p class=\"ds-card-issuer\">Google Cloud</p><h2 class=\"ds-card-title\">Professional Machine Learning Engineer</h2><p class=\"ds-card-kind\">Professional certification</p><a class=\"ds-card-link\" href=\"https://www.credly.com/badges/dd6728ed-f889-4051-a53e-6bad93a51584/public_url\" target=\"_blank\" rel=\"noopener noreferrer\">View credential <svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 18 18 6M6 6h12v12\"/></svg></a></article>",
+      "css": ".ds-card{width:min(310px,82%);min-height:400px;padding:24px 28px 26px;background:var(--portfolio-surface-raised, #0d2748);color:var(--portfolio-text-primary, #f5f0e7);border-radius:var(--portfolio-radius-control, 0);box-shadow:0 30px 60px color-mix(in srgb,var(--portfolio-navy-950, #04101f) 40%,transparent);transition:box-shadow .3s;}.ds-card-art{height:205px;display:grid;place-items:center;border-bottom:1px solid var(--portfolio-border, rgba(245, 240, 231, 0.18));margin-bottom:17px;background:var(--portfolio-light-raised, #ffffff);color:var(--portfolio-navy-700, #17385f);}.ds-card-art svg{width:185px;height:185px;}.ds-card-issuer{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:12px;font-weight:600;line-height:1.6;color:var(--portfolio-text-secondary, #c8c8c4);margin:0 0 5px;}.ds-card-title{font-family:var(--portfolio-display, \"Iowan Old Style\", \"Baskerville\", \"Times New Roman\", serif);font-size:28px;font-weight:400;line-height:1.14;letter-spacing:-.025em;color:var(--portfolio-text-primary, #f5f0e7);margin:0;max-width:21ch;text-wrap:balance;}.ds-card-kind{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:11px;line-height:1.6;color:var(--portfolio-text-secondary, #c8c8c4);margin:9px 0 0;}.ds-card-link{display:inline-flex;align-items:center;gap:9px;font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:12px;line-height:1.6;font-weight:700;min-height:var(--portfolio-touch-target, 44px);color:var(--portfolio-text-accent, #f0d48d);margin-top:18px;text-decoration:none;}.ds-card-link:hover{text-decoration:underline;text-underline-offset:4px;}.ds-card-link:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:5px;}@media(max-width:1100px){.ds-card{width:280px;padding:20px 24px;}.ds-card-title{font-size:26px;}.ds-card-art{height:185px;}.ds-card-art svg{width:168px;height:168px;}}@media(max-width:700px){.ds-card{width:min(230px,70%);min-height:0;padding:16px 18px 18px;}.ds-card-art{height:150px;margin-bottom:12px;}.ds-card-art svg{width:112px;height:112px;}.ds-card-title{font-size:20px;line-height:1.08;}.ds-card-issuer{font-size:11px;}}@media(prefers-reduced-motion:reduce){.ds-card{transition:none;}}"
+    },
+    {
+      "name": "Appearance toggle",
+      "kind": "button",
+      "refersTo": "theme-toggle",
+      "description": "Paired sun/moon control shown in dark selection; runtime preference logic remains in the application.",
+      "html": "<button class=\"ds-theme-toggle\" aria-label=\"Switch to light theme\" aria-pressed=\"true\"><span class=\"ds-theme-icon ds-theme-sun\"><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5\"/></svg></span><span class=\"ds-theme-icon ds-theme-moon\"><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.5 13.3A8.8 8.8 0 0 1 10.7 3.5a9 9 0 1 0 9.8 9.8Z\"/></svg></span></button>",
+      "css": ".ds-theme-toggle{display:flex;align-items:center;gap:2px;border:1px solid var(--portfolio-border-strong, rgba(217, 173, 89, 0.42));border-radius:var(--portfolio-radius-control, 0);background:var(--portfolio-surface-panel, #081a33);color:var(--portfolio-text-primary, #f5f0e7);padding:4px;min-height:var(--portfolio-touch-target, 44px);min-width:76px;cursor:pointer;}.ds-theme-icon{width:30px;height:30px;border-radius:var(--portfolio-radius-control, 0);display:grid;place-items:center;color:var(--portfolio-text-secondary, #c8c8c4);}.ds-theme-toggle[aria-pressed=\"true\"] .ds-theme-moon,.ds-theme-toggle[aria-pressed=\"false\"] .ds-theme-sun{background:var(--portfolio-accent, #d9ad59);color:var(--portfolio-text-on-accent, #05070b);}.ds-theme-toggle:hover{border-color:var(--portfolio-text-accent, #f0d48d);background:var(--portfolio-surface-raised, #0d2748);}.ds-theme-toggle:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:5px;}@media(max-width:700px){.ds-theme-toggle{min-width:64px;padding:3px;}.ds-theme-icon{width:26px;height:30px;}}"
+    },
+    {
+      "name": "Learning disclosure",
+      "kind": "custom",
+      "refersTo": "learning-disclosure",
+      "description": "Native expandable evidence row with compact facts and a turning marker.",
+      "html": "<details class=\"ds-disclosure\"><summary class=\"ds-disclosure-summary\"><span class=\"ds-disclosure-art\"><svg viewBox=\"0 0 56 56\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 7.5h17l10 10v31H15z\"/><path d=\"M32 8v11h10M21 28h15M21 34h15M21 40h10\"/></svg></span><span class=\"ds-disclosure-heading\"><span class=\"ds-disclosure-title\">Learning certificate</span><span class=\"ds-disclosure-meta\">Issuer · Course completion certificate</span></span><span class=\"ds-disclosure-marker\" aria-hidden=\"true\"></span></summary><div class=\"ds-disclosure-content\"><p class=\"ds-disclosure-overview\">Learning context and issuer evidence appear beneath the summary.</p></div></details>",
+      "css": ".ds-disclosure{border-top:1px solid var(--portfolio-border, rgba(245, 240, 231, 0.18));border-bottom:1px solid var(--portfolio-border, rgba(245, 240, 231, 0.18));color:var(--portfolio-text-primary, #f5f0e7);}.ds-disclosure-summary{display:grid;grid-template-columns:56px minmax(0,1fr) 12px;align-items:center;column-gap:18px;min-height:84px;padding:12px 8px;cursor:pointer;list-style:none;}.ds-disclosure-summary::-webkit-details-marker{display:none;}.ds-disclosure-summary:hover{background:var(--portfolio-surface-panel, #081a33);}.ds-disclosure-art{display:grid;place-items:center;width:56px;height:56px;background:var(--portfolio-surface-raised, #0d2748);color:var(--portfolio-text-accent, #f0d48d);border:1px solid var(--portfolio-border, rgba(245, 240, 231, 0.18));border-radius:var(--portfolio-radius-control, 0);}.ds-disclosure-art svg{width:42px;height:42px;}.ds-disclosure-heading{display:grid;gap:2px;min-width:0;}.ds-disclosure-title{font-family:var(--portfolio-display, \"Iowan Old Style\", \"Baskerville\", \"Times New Roman\", serif);font-size:22px;font-weight:400;line-height:1.16;letter-spacing:-.02em;text-wrap:balance;}.ds-disclosure-summary:hover .ds-disclosure-title{color:var(--portfolio-text-accent, #f0d48d);}.ds-disclosure-meta{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:11px;line-height:1.5;color:var(--portfolio-text-secondary, #c8c8c4);}.ds-disclosure-marker{justify-self:end;width:8px;height:8px;border-right:1.5px solid var(--portfolio-text-secondary, #c8c8c4);border-bottom:1.5px solid var(--portfolio-text-secondary, #c8c8c4);transform:rotate(45deg);transition:transform 140ms ease;}.ds-disclosure[open] .ds-disclosure-marker{transform:rotate(225deg);}.ds-disclosure-content{padding:0 30px 18px 82px;}.ds-disclosure-overview{font-family:var(--portfolio-sans, \"Avenir Next\", \"Helvetica Neue\", \"Segoe UI\", sans-serif);font-size:14px;line-height:1.6;max-width:72ch;margin:0;}.ds-disclosure-summary:focus-visible{outline:3px solid var(--portfolio-focus, #f0d48d);outline-offset:-3px;}@media(max-width:700px){.ds-disclosure-summary{grid-template-columns:44px minmax(0,1fr) 10px;column-gap:12px;min-height:74px;padding:10px 4px;}.ds-disclosure-art{width:44px;height:44px;}.ds-disclosure-art svg{width:34px;height:34px;}.ds-disclosure-title{font-size:18px;}.ds-disclosure-content{padding:0 8px 16px 60px;}}@media(prefers-reduced-motion:reduce){.ds-disclosure-marker{transition:none;}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Joey's Portfolio Gallery",
+    "overview": "This gallery belongs to Joey's established portfolio world: navy and warm paper, gold actions, expressive pink, old-style serif headings and square controls. Its confident, personal voice comes from the user's chosen upstream theme; Avenir and Iowan are deliberate identity choices.\n\nThe implementation is a theme port over the existing gallery. The portfolio supplies color roles and typography; the gallery supplies composition, original credential artwork, orbital geometry and interaction. The result pairs a prominent visual showcase with compact evidence rows and readable permanent pages.",
+    "keyCharacteristics": [
+      "Navy and paper surfaces switch through shared semantic roles.",
+      "Gold signals actions; pink adds expression and the hard feature shadow.",
+      "Serif headings contrast with sans-serif facts and controls.",
+      "Square surfaces frame original artwork; side thumbnails contain their circular badge and halo.",
+      "Motion remains controlled, pausable and sensitive to reduced-motion preference."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Theme Rule",
+        "body": "Consume `--portfolio-surface-*`, `--portfolio-text-*`, `--portfolio-accent`, `--portfolio-expressive`, `--portfolio-border*` and `--portfolio-focus`; preserve their source values and use theme roles rather than hardcoding a dark-only skin.",
+        "section": "colors"
+      },
+      {
+        "name": "The Source Type Rule",
+        "body": "Keep the Iowan/Avenir stacks and regular serif headings; retain each gallery component's responsive size instead of substituting the upstream portfolio's larger page-title scale.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "**Do** use the namespaced semantic roles for both light and dark appearances.",
+      "**Do** preserve original artwork, white mounts, record-specific crops and orbital geometry.",
+      "**Do** retain Iowan/Avenir typography and the actual responsive caption sizes.",
+      "**Do** verify focus, reduced motion, navigation and overflow at 390px and 1440px.",
+      "**Do** keep shared source tokens and provenance aligned when refreshing the portfolio theme."
+    ],
+    "donts": [
+      "**Don't** replace this theme port with a new visual identity or change the established interactions.",
+      "**Don't** apply rounded control presets to the square portfolio surfaces.",
+      "**Don't** recolor issuer artwork or promote personal ratings into issuer metadata.",
+      "**Don't** copy unused upstream sidebar, testimonial or portfolio layout rules into gallery screens.",
+      "**Don't** treat loaded upstream tokens or sidecar tonal previews as evidence of components or colors used by this gallery."
+    ]
+  }
+}

@@ -5,7 +5,7 @@ function reflectTheme() {
   const dark = document.documentElement.dataset.theme === 'dark';
   themeButton.setAttribute('aria-pressed', String(dark));
   themeButton.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} theme`);
-  document.querySelector('meta[name="theme-color"]').content = dark ? '#10182c' : '#244bb5';
+  document.querySelector('meta[name="theme-color"]').content = dark ? '#04101f' : '#f5f0e7';
 }
 
 themeButton.addEventListener('click', () => {
