@@ -32,6 +32,17 @@ reduced motion, halo layering, image loading, and horizontal overflow. It also
 verifies that collection thumbnails and credential subpages keep their original
 image treatment. Screenshots go to `output/playwright/reel-artwork/<width>/`.
 
+`reel-badge-containment.js` checks all 17 front selections in both themes and
+motion preferences at 1440px Chromium, 390px iPhone WebKit, and the reported
+621×748 viewport. It measures square side mounts, artwork, halos, pulse glow,
+hover scaling and visible keyboard focus, while preserving the front card's
+original frame and asset-specific crops. Layout targets remain at least 44px;
+the exposed Google/Anthropic neighbors beside AWS also pass projected 44px
+target checks. Farther background tiles are measured without asserting that
+every perspective-scaled target is 44px. Real taps/clicks verify that side-tile
+padding selects a card and artwork links open its permanent detail page.
+Screenshots go to `output/playwright/reel-badge-containment/<width>/`.
+
 `reel-completion-dates.js` checks all 17 reel tiles and their pre-rendered HTML.
 It verifies ten exact issuer-backed completion dates, the undated completed
 record, and unchanged in-progress/to-do labels. It also checks the `<time>` ISO

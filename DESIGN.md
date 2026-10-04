@@ -184,7 +184,7 @@ The implementation is a theme port over the existing gallery. The portfolio supp
 - Navy and paper surfaces switch through shared semantic roles.
 - Gold signals actions; pink adds expression and the hard feature shadow.
 - Serif headings contrast with sans-serif facts and controls.
-- Square surfaces frame original artwork and circular orbit details.
+- Square surfaces frame original artwork; side thumbnails contain their circular badge and halo.
 - Motion remains controlled, pausable and sensitive to reduced-motion preference.
 
 Source authority: `design-system/tokens.css` and `tokens.json`, consumed through `assets/design-system/portfolio-tokens.css` and `portfolio-theme.css`; retained geometry lives in `styles.css` and `app.js`. The source is **July 2026 personal website system v1.0.0**, repository `JoeyWilkes12/personal-websites`, branch `replit/autoscale-2026-10-03-v1.0.1`, app `2026-10-03_v1.0.1`, verified release head `85e31d8565dd1a5458416537fdab7ab70758a075`. All 110 source declarations match the deployed stylesheet after minification normalization; the exact running deployment SHA is unconfirmed. See `design-system/provenance.json`.
@@ -248,7 +248,7 @@ These system stacks pair editorial headings with compact, clear facts. Heading w
 
 The centered page caps at 1280px. Its total side allowance is 96px normally, 56px at ≤1100px and 32px at ≤700px. The desktop showcase keeps introduction and orbit beside one another in `.82fr / 1.18fr` columns, with 48px 52px 25px padding and a 620px minimum height. Compact desktop uses `.85fr / 1.15fr`; mobile stacks introduction, reel and controls with 30px 20px 18px padding.
 
-The reel and stack retain 520px minimum height, becoming 470px on mobile. The front card is `min(310px, 82%)`, then 280px at ≤1100px and `min(230px, 70%)` at ≤700px. Side cards step from 168px to 150px to 112px. Do not replace this geometry with a conventional card grid.
+The reel and stack retain 520px minimum height, becoming 470px on mobile. The front card is `min(310px, 82%)`, then 280px at ≤1100px and `min(230px, 70%)` at ≤700px. Side-card widths remain 168px, 150px and 112px with their existing padding; square white mounts now determine the automatic tile height. Orbit paths and interaction remain unchanged. Do not replace the orbit with a conventional card grid.
 
 Evidence rows retain five desktop columns; they reflow at 1200px and 1000px, then become two columns at 700px with evidence actions beneath the facts. Detail heroes pair a 300px artwork mount with text, reduce the artwork column at 1000px, and stack at 700px. Detail reading columns and disclosure content also collapse at these breakpoints. Minimum regression viewports are 1440px desktop and 390px mobile.
 
@@ -258,11 +258,11 @@ The spacing entries name loaded source steps that recur in retained gallery geom
 
 Tonal page/panel/raised layers provide the foundation. The showcase uses a source-family hard pink offset adapted to the gallery (12px 12px); presentation mode removes it. Orbit cards keep the original diffuse spatial shadows: front 0 30px 60px with 40% midnight navy, side 0 14px 30px with 19%, hover 0 20px 40px with 33%. The sidecar records their exact CSS.
 
-Artwork focus uses a navy outline plus white and gold rings so the signal remains legible on the original white mount. The halo uses a gold border, pulse and dashed rotation; it is an interaction cue around artwork, not a new card surface.
+Front artwork focus uses a navy outline plus white and gold rings on the original white mount. Side thumbnails use the navy outline inside the link (−3px offset), without the outer shadow rings. Their gold halo pulses through its border and inward glow, with the dashed ring contained by the square mount; timing and rotation remain original.
 
 ## Shapes
 
-Controls, filters, status labels, search fields, cards, artwork panels and detail heroes have square corners (`control`). Circular artwork links, halo and orbit lines retain their original circular geometry (`round`). Pagination retains circular inactive markers and a square active marker. Keep issuer artwork unchanged: full images use containment, while the reel's existing record-specific crops remain in `styles.css`.
+Controls, filters, status labels, search fields, cards, artwork panels and detail heroes have square corners (`control`). Circular artwork links, halo and orbit lines retain their circular geometry (`round`); side thumbnails clip the circle and halo inside an aspect-ratio-one white mount. Pagination retains circular inactive markers and a square active marker. Keep issuer artwork unchanged: full images use containment, while the reel's existing record-specific crops remain in `styles.css`.
 
 ## Components
 
@@ -284,7 +284,9 @@ Collection navigation is a quiet semibold text link with underline on hover, hid
 
 ### Orbit cards
 
-Only the front card exposes its caption; side tiles show artwork. White artwork mounts and original crops remain intact in both themes. Preserve the original pointer, swipe, keyboard and evidence-link behavior. Auto-rotation rests for 3600ms, glides for 900ms with cubic ease-out, and resumes after 6000ms of inactivity. Hover, focus, dragging, an offscreen reel or hidden document suspend auto-rotation. Reduced motion disables auto-rotation, CSS animation/transition and smooth scrolling; manual selection still works without glide.
+Only the front card exposes its caption; side tiles show artwork. The primary badge, caption and white frame remain unchanged. Side mounts use `aspect-ratio: 1` and hidden overflow; thumbnail link padding is 2px, with image frames of 124px, 108px and 80px across the existing breakpoints. The side halo's dashed ring uses a −1px inset so it stays within the white square. Each thumbnail retains its meaningful record-detail href and accessible name, with a target larger than 44px in both dimensions. Original image files and record-specific crops remain intact in both themes.
+
+Preserve the original pointer, swipe, keyboard and evidence-link behavior. Auto-rotation rests for 3600ms, glides for 900ms with cubic ease-out, and resumes after 6000ms of inactivity. Hover, focus, dragging, an offscreen reel or hidden document suspend auto-rotation. Reduced motion disables auto-rotation, CSS animation/transition and smooth scrolling; manual selection still works without glide.
 
 ### Evidence rows and learning disclosures
 

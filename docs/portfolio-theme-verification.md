@@ -19,8 +19,12 @@ The certification work starts from `origin/main` at `fad6a8859dffb43a9223602ae7b
 | Denied browser storage: usable light/dark toggle, reload, navigation | Pass |
 | Full hyperlink check, including new theme assets | 222/223 pass; unchanged FinOps issuer source returns HTTP 403 |
 | Fresh visual/code review and select-spacing verdict | Ship; no remaining material findings |
+| Side-badge containment: all 17 selections, both themes/motion states, 390px WebKit / 621px and 1440px Chromium, hover/focus and thumbnail links | Pass; 1,496 geometry measurements, no console errors |
+| Focused containment visual/code review | Ship; no material findings |
 
 The mobile select uses `appearance: none` because WebKit’s native skin overrode the 44px minimum and rendered at 20px. The native select element, popup and events remain; a noninteractive chevron has reserved label space. Screenshot review confirms the final gap in both mobile themes.
+
+The subsequent side-badge correction changes only `portfolio-theme.css`: side white mounts become square with hidden overflow, links use 2px padding, image frames become 124px/108px/80px, and the dashed halo inset becomes −1px. Side focus moves inside the link; the halo pulse uses a gold border and inward glow while retaining its duration, rotation and reduced-motion behavior. Orbit paths, tile widths, original artwork crops, interaction and meaningful record-detail hrefs remain unchanged. Side-tile automatic height now follows the square mount; the primary badge, caption and white frame are unchanged. Side artwork layout targets remain at least 44px, with projected 44px targets also verified for the exposed Google/Anthropic neighbors beside AWS. Farther background tiles are measured without a universal projected-target claim. The containment callback, existing artwork/theme callbacks, mouse/WebKit swipe logic and native Chromium touch swipe/vertical-scroll checks pass on the correction. A focused screenshot/code review at 390px, 621px and 1440px found no material regression.
 
 WebKit’s swipe test dispatches synthetic pointer events and does not prove native Safari gesture arbitration. The separate Chromium touch run uses trusted CDP touch input and proves native vertical scrolling. The iPhone WebKit theme/resilience sessions retain the mobile user agent, pixel ratio, viewport and touch capability, and use real taps for native disclosures and navigation.
 

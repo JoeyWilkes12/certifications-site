@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-04T18:51:14Z",
+  "generatedAt": "2026-10-04T19:12:36Z",
   "title": "Design System: Joey Wilkes — Certification Gallery",
   "extensions": {
     "colorMeta": {
@@ -354,7 +354,7 @@
       {
         "name": "artwork-focus",
         "value": "0 0 0 5px #fff, 0 0 0 8px var(--portfolio-gold)",
-        "purpose": "White and gold rings accompany the navy outline on artwork."
+        "purpose": "Front artwork only: white and gold rings accompany the navy outline. Side thumbnails use the navy outline inside the link at a -3px offset, with no outer shadow rings."
       }
     ],
     "motion": [
@@ -401,7 +401,7 @@
       {
         "name": "halo-pulse",
         "value": "2400ms ease-out infinite",
-        "purpose": "Gold halo; side 3200ms, hover/focus 1200ms."
+        "purpose": "Front gold halo; side thumbnails retain 3200ms and hover/focus 1200ms through the contained border/inward-glow pulse."
       },
       {
         "name": "halo-spin",
@@ -422,6 +422,11 @@
         "name": "reduced-motion",
         "value": "prefers-reduced-motion: reduce",
         "purpose": "No auto-rotation, CSS animations/transitions or smooth scrolling; manual selection has no glide."
+      },
+      {
+        "name": "halo-pulse-contained",
+        "value": "3200ms ease-out infinite; hover/focus 1200ms",
+        "purpose": "Side thumbnails only: gold border changes from 40% to 75%, with inset glow from 10px to 14px at 8%; dashed rotation remains 18000ms. The square white mount clips the halo, thumbnail image frames are 124px/108px/80px, link padding is 2px and dashed-ring inset is -1px. Record-detail hrefs and targets larger than 44px remain; reduced motion removes animation."
       }
     ],
     "breakpoints": [
@@ -536,7 +541,7 @@
       "Navy and paper surfaces switch through shared semantic roles.",
       "Gold signals actions; pink adds expression and the hard feature shadow.",
       "Serif headings contrast with sans-serif facts and controls.",
-      "Square surfaces frame original artwork and circular orbit details.",
+      "Square surfaces frame original artwork; side thumbnails contain their circular badge and halo.",
       "Motion remains controlled, pausable and sensitive to reduced-motion preference."
     ],
     "rules": [
