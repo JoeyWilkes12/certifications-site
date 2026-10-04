@@ -1,0 +1,16 @@
+{
+  "sourceRepository": "https://github.com/JoeyWilkes12/personal-websites",
+  "releaseBranch": "replit/autoscale-2026-10-03-v1.0.1",
+  "releaseBranchHead": "85e31d8565dd1a5458416537fdab7ab70758a075",
+  "exactRunningDeploymentShaConfirmed": false,
+  "module": "2026-10-03_v1.0.1/design-system",
+  "moduleVersion": "1.0.0",
+  "liveStylesheet": "https://joey-wilkes12-website-2026-10-03.replit.app/_next/static/chunks/43w-4cxnmfixu.css",
+  "liveStylesheetSha256": "84957de20760edbea03eaba2135fe9e21de694c8ad285243a09be76f02adcc46",
+  "sourceDeclarationsChecked": 110,
+  "cssMinificationNormalizedMismatches": [],
+  "readmePermalink": "https://github.com/JoeyWilkes12/personal-websites/blob/85e31d8565dd1a5458416537fdab7ab70758a075/deployment/replit/README.md",
+  "designSystemPermalink": "https://github.com/JoeyWilkes12/personal-websites/tree/85e31d8565dd1a5458416537fdab7ab70758a075/2026-10-03_v1.0.1/design-system",
+  "localTokenFilesByteIdentical": true,
+  "patternsDifference": "Release adds ContactLink documentation for GitHub, LinkedIn and compact email icons using Feather MIT vectors; all existing sections identical."
+}

@@ -1,5 +1,27 @@
 # Reel regression checks
 
+The same browser matrix verifies the portfolio theme. `portfolio-theme.js`
+checks exact source colors and font stacks, OS light/dark defaults, explicit
+preference persistence across reload and detail-page navigation, actual text
+and keyboard-focus contrast, 44px primary controls, every front-card caption,
+control collisions, all 17 reel records, all 36 learning entries, and motion
+preferences. It checks title line bounds independently from CSS line boxes;
+visible font overflow is not misreported as clipping. Review screenshots for
+both themes are in `output/playwright/portfolio-theme/<width>/`.
+
+`theme-resilience.js` creates isolated contexts using the caller’s viewport,
+mobile user agent, pixel ratio and touch capability. With JavaScript disabled,
+it checks all pre-rendered records, both OS appearances, actual native LinkedIn
+disclosures and PDF evidence, credential artwork and return navigation. It also
+blocks browser storage reads/writes and checks usable theme controls and
+navigation. Its screenshots are in `output/playwright/theme-resilience/<width>/`.
+
+`node tests/theme-source.mjs` verifies the upstream token SHA-256, exact
+namespace transformation and standalone stylesheet loading on all 18 pages.
+Run it with `node tests/static-content.mjs` before the browser matrix. The
+existing reel, swipe and learning callbacks below remain the behavior checks;
+the theme callbacks add coverage for the material risks introduced by the port.
+
 These files are Playwright CLI callbacks. Open the running localhost site,
 take a fresh snapshot, then pass a callback's contents to `playwright-cli run-code`.
 Run it once at 1440px in Chromium and once at 390px with the complete iPhone 15
