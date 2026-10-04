@@ -250,6 +250,7 @@ function step(direction) {
 }
 
 function applyFilters() {
+  if (dragging) finishDrag(null, true);
   touch();
   const search = query.trim().toLocaleLowerCase();
   filtered = credentials.filter(c => (category === 'all' || (c.categories || [c.category]).includes(category)) && (progressStatus === 'all' || (c.progressStatus || 'completed') === progressStatus) && [c.title, c.issuer, ...(c.categories || [c.category]), c.kind, (c.progressStatus || '').replaceAll('-', ' '), ...c.topics].join(' ').toLocaleLowerCase().includes(search));
@@ -280,44 +281,82 @@ reel.addEventListener('keydown', event => {
   }
 });
 
-// Drag / swipe spins the orbit directly; a tap on a side card brings it to the front.
-const cardWidth = () => Math.max(160, (slides[0]?.offsetWidth || 320) * 0.9);
+// Follow horizontal gestures from anywhere on a tile, including its badge link.
+let swipeClickUntil = 0;
 reel.addEventListener('pointerdown', event => {
-  if (event.button !== 0 || event.target.closest('a, button')) return;
+  if (!event.isPrimary || event.button !== 0 || dragging || !filtered.length || event.target.closest('button, input, select, textarea')) return;
+  swipeClickUntil = 0;
   touch();
-  window.clearTimeout(stepTimer);
   tween = null;
-  dragging = { x: event.clientX, y: event.clientY, startTheta: theta, theta, moved: false, pointerId: event.pointerId, target: event.target.closest('.credential-slide') };
+  const front = slides.find(slide => slide.classList.contains('is-front') && slide.style.display !== 'none');
+  dragging = {
+    x: event.clientX, y: event.clientY, dx: 0,
+    startTheta: theta, startSlot: Math.round(theta), theta,
+    distance: Math.max(160, (front?.offsetWidth || 320) * 0.9),
+    moved: false, pointerId: event.pointerId,
+    target: event.target.closest('.credential-slide'), link: event.target.closest('a'),
+  };
   requestFrame();
 });
 reel.addEventListener('pointermove', event => {
   if (!dragging || event.pointerId !== dragging.pointerId) return;
   const dx = event.clientX - dragging.x;
-  if (!dragging.moved && Math.abs(dx) > 6) { dragging.moved = true; try { reel.setPointerCapture(event.pointerId); } catch {} }
-  if (dragging.moved) { reel.classList.add('is-dragging'); dragging.theta = dragging.startTheta - dx / cardWidth(); requestFrame(); }
+  const dy = event.clientY - dragging.y;
+  if (!dragging.moved) {
+    // Leave vertical scrolling and ordinary taps to the browser.
+    if (Math.abs(dx) < 8 || Math.abs(dx) <= Math.abs(dy) * 1.5) return;
+    dragging.moved = true;
+    reel.classList.add('is-dragging');
+    try { reel.setPointerCapture(event.pointerId); } catch {}
+  }
+  if (event.cancelable) event.preventDefault();
+  dragging.dx = dx;
+  const limit = filtered.length === 1 ? 0.35 : 1;
+  dragging.theta = dragging.startTheta - Math.max(-limit, Math.min(limit, dx / dragging.distance));
+  requestFrame();
 });
-const endDrag = event => {
+const finishDrag = (event, cancelled = false) => {
   if (!dragging || (event && event.pointerId !== dragging.pointerId)) return;
-  const { moved, target, theta: dragTheta } = dragging;
+  const gesture = dragging;
   dragging = null;
   reel.classList.remove('is-dragging');
-  if (moved) {
-    theta = dragTheta;
-    const rounded = Math.round(theta);
-    const index = ((rounded % filtered.length) + filtered.length) % filtered.length;
+  try {
+    if (reel.hasPointerCapture(gesture.pointerId)) reel.releasePointerCapture(gesture.pointerId);
+  } catch {}
+  if (gesture.moved) {
+    // A deliberate swipe steps one tile, like the arrow buttons; jitter snaps back.
+    const direction = !cancelled && filtered.length > 1 && Math.abs(gesture.dx) >= 40 ? -Math.sign(gesture.dx) : 0;
+    const slot = gesture.startSlot + direction;
+    theta = gesture.theta;
+    const index = ((slot % filtered.length) + filtered.length) % filtered.length;
     activeId = filtered[index]?.id || activeId;
     syncActive({ announce: true });
-    glideTo(rounded, { duration: 420 });
-  } else if (target && target.dataset.id !== activeId) {
-    select(target.dataset.id);
+    swipeClickUntil = performance.now() + 800;
+    glideTo(slot, { duration: 320 });
+  } else if (!cancelled && !gesture.link && gesture.target && gesture.target.dataset.id !== activeId) {
+    select(gesture.target.dataset.id);
   } else {
-    requestFrame();
+    glideTo(gesture.startSlot, { duration: 320 });
   }
   touch();
 };
-reel.addEventListener('pointerup', endDrag);
-reel.addEventListener('pointercancel', endDrag);
-reel.addEventListener('lostpointercapture', () => { if (dragging) endDrag(); });
+// Releases outside the reel also clear a pending mouse gesture before capture.
+window.addEventListener('pointerup', event => finishDrag(event), true);
+window.addEventListener('pointercancel', event => finishDrag(event, true), true);
+window.addEventListener('blur', () => { if (dragging) finishDrag(null, true); });
+reel.addEventListener('lostpointercapture', event => {
+  // Touch starts with implicit capture on a descendant. Its transfer to the reel
+  // also bubbles a lost-capture event, which must not end the new reel gesture.
+  if (event.target === reel) finishDrag(event, true);
+});
+reel.addEventListener('click', event => {
+  if (event.detail && performance.now() < swipeClickUntil) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    swipeClickUntil = 0;
+  }
+}, true);
+reel.addEventListener('dragstart', event => event.preventDefault());
 
 showcase.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; armStep(); } });
 showcase.addEventListener('pointerleave', () => { hovered = false; armStep(); });
@@ -326,7 +365,7 @@ showcase.addEventListener('focusout', event => { if (!showcase.contains(event.re
 document.addEventListener('visibilitychange', armStep);
 new IntersectionObserver(entries => { onScreen = entries[0].isIntersecting; armStep(); }, { threshold: 0.25 }).observe(showcase);
 reducedMotion.addEventListener('change', () => { tween = null; requestFrame(); armStep(); });
-window.addEventListener('resize', () => { measure(); layout(); });
+window.addEventListener('resize', () => { if (dragging) finishDrag(null, true); measure(); layout(); });
 document.addEventListener('keydown', event => {
   if (event.key === '/' && !event.ctrlKey && !event.metaKey && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
     event.preventDefault(); $('#search').focus();
