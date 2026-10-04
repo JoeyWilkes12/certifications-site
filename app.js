@@ -70,7 +70,7 @@ if (badgeSearch) {
       row.hidden = !matches;
       if (matches) visible += 1;
     }
-    badgeStatus.textContent = value ? `${visible} of ${totalBadges} Google Skills badges match.` : `${totalBadges} Google Skills badges.`;
+    badgeStatus.textContent = value ? `${visible} of ${totalBadges} badges and certificates match.` : `${totalBadges} badges and certificates.`;
     badgeEmpty.hidden = Boolean(visible);
   };
   badgeSearch.addEventListener('input', filterBadges);
