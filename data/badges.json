@@ -228,7 +228,8 @@
         "reviewedOn": "2026-10-02",
         "excerpt": "This course is an introduction to building forecasting solutions with Google Cloud.",
         "overview": "Covers forecasting on Google Cloud from sequence-model and time-series foundations through data preparation, model development, and Vertex AI deployment. A retail example informs a final exercise in which learners build their own forecasts."
-      }
+      },
+      "personalRating": 4.5
     },
     {
       "id": "vector-search-and-embeddings",
@@ -248,7 +249,8 @@
         "reviewedOn": "2026-10-02",
         "excerpt": "Explore AI-powered search technologies, tools, and applications in this course.",
         "overview": "Introduces AI-powered search patterns including semantic search with vector embeddings, hybrid retrieval that combines semantic and keyword methods, and retrieval-augmented generation. Learners use Vertex AI Vector Search to build a grounded search experience and can continue with related GEAR content."
-      }
+      },
+      "personalRating": 4
     },
     {
       "id": "machine-learning-operations-mlops-getting-started",

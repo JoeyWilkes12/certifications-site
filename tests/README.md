@@ -48,3 +48,32 @@ then run `resize 390 844` before the snapshot and callback. Resizing retains the
 device's touchscreen, mobile user agent, and pixel ratio. Run each callback in
 both device profiles, then close only its own browser session; keep the preview
 server running for review.
+
+`learning-collection.js` checks all 36 secondary entries (17 Google badges and
+19 LinkedIn certificates), Decision Intelligence's first position and favorite
+stars, the exact 4.5/5 Forecasting and 4/5 Vector Search ratings, accessible
+labels, half-star geometry, matching public JSON, original PDF responses,
+independent search, disclosures, empty recovery, themes, and reel isolation.
+Use the same desktop and iPhone sessions described above. Its screenshots are
+written under `output/playwright/learning-collection/<width>/`.
+
+`node tests/static-content.mjs` verifies all 19 original PDF SHA-256 hashes,
+prerendered record counts, exact ratings, embedded/public JSON parity, and
+separate structured metadata without a browser.
+
+Run strict hyperlink verification against the localhost server before release:
+
+```bash
+BASE_URL=http://127.0.0.1:4390 node tests/check-links.mjs --http-only
+```
+
+The checker follows HTTP redirects, fails on any 4xx/5xx response, checks expected
+page content, and extracts PDF text with Poppler or Python's `pypdf` (set
+`PDF_PYTHON` to the interpreter if needed). It uses no external browser
+automation. `--internal-only` checks local destinations; `--match=<URL fragment>`
+retries a specific failed target and writes a separate targeted report. Generated
+reports and screenshots remain in the ignored `output/playwright/` directory.
+
+The baseline FinOps for AI course source at
+`https://learn.finops.org/path/certified-finops-for-ai` returns HTTP 403 to the
+HTTP checker. It remains a reported failure, with no exception or pass override.
