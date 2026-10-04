@@ -194,9 +194,20 @@ async (page) => {
         const control = page.locator(selector);
         const size = await control.evaluate(node => {
           const box = (node.matches('input') ? node.closest('.search') : node).getBoundingClientRect();
-          return { width: box.width, height: box.height };
+          let labelFits = true;
+          if (node.matches('select')) {
+            const style = getComputedStyle(node);
+            const canvas = document.createElement('canvas').getContext('2d');
+            canvas.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+            const textWidth = canvas.measureText(node.selectedOptions[0].textContent).width;
+            const horizontalChrome = ['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth']
+              .reduce((sum, property) => sum + parseFloat(style[property]), 0);
+            labelFits = textWidth + horizontalChrome <= box.width + 1;
+          }
+          return { width: box.width, height: box.height, labelFits };
         });
         assert(size.width >= 43.99 && size.height >= 43.99, `${theme} ${selector}: primary control is smaller than 44px (${size.width} × ${size.height})`);
+        assert(size.labelFits, `${theme} ${selector}: selected label does not fit beside its arrow`);
         await control.scrollIntoViewIfNeeded();
         await page.keyboard.press('Tab');
         await control.focus();

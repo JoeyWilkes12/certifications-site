@@ -375,6 +375,7 @@ html[data-theme="dark"] .filters button:hover:not([aria-pressed="true"]) {
 .status-filter select {
   appearance: none;
   min-height: var(--portfolio-touch-target);
+  padding-right: 28px;
 }
 
 .status-filter {
