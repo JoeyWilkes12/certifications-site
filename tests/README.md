@@ -64,6 +64,25 @@ navigation; that run does not verify native WebKit swipe arbitration or scroll.
 Desktop uses mouse input, with synthetic pointer cancellation. Screenshots go
 to `output/playwright/reel-swipe/<width>-<input-mode>/`.
 
+`reel-transition.js` samples every animation frame (after `app.js` lays it out) while
+the orbit steps: one automatic step, next/previous buttons, ArrowRight/ArrowLeft,
+a side-tile tap or click, and a slow one-slot drag in each direction. For the tile
+leaving the centre and the tile arriving there, it records layout width/height
+(free of the 3D perspective) and visible caption opacity. Each must change in
+one direction only, and no single frame may carry more than 35% of the total
+change. The old `.is-front` snap moved 100% in one frame. Endpoints must equal
+the rest geometry measured on `origin/main` (7b2b8be) before the morph. After
+the glides, it checks all 17 front selections at rest against that baseline. Tile,
+mount, link and artwork sizes are checked in every engine; front heights, which
+depend on caption wrapping, only in Chromium. The 1440, 1024, 621 and 390px
+widths have recorded baselines. It also checks reduced motion: no partial
+caption frames and no running tile animations. Other checks cover horizontal
+overflow and console errors. It writes a drag filmstrip held at each tenth of a
+slot (`drag-000.png` to `drag-100.png`) and four live glide frames (`glide-1.png`
+to `glide-4.png`) to `output/playwright/reel-transition/<width>/`. Run it in the
+desktop and mobile sessions. Chromium touch sessions use native CDP touch for the
+drags, and WebKit uses synthetic pointer events, as in `reel-swipe.js`.
+
 Example after starting a local server on port 4380:
 
 ```bash
