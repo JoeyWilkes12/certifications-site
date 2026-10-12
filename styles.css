@@ -256,21 +256,32 @@ body:not(.js-enabled) .badge-tools{display:none}
 /* ---- 3D orbit reel ---- */
 .reel{min-height:520px;overflow:visible;cursor:grab;user-select:none;-webkit-user-select:none}
 .reel.is-dragging{cursor:grabbing}
-.slide-stack{min-height:520px;overflow:visible}
-.credential-slide{display:none;left:50%;top:50%;transform-origin:50% 50%;opacity:0;pointer-events:auto;width:min(310px,82%);min-height:0;will-change:transform,opacity;backface-visibility:hidden;transition:box-shadow .3s,border-radius .3s;box-sizing:border-box}
+.slide-stack{min-height:520px;overflow:visible;container-type:inline-size}
+/* Orbit morph. app.js sets --front on every tile each frame: 1 at the centre slot, 0 one slot away or
+   farther, linear in orbit distance. Each size mixes its front and side rest values with it, so a tile
+   grows or shrinks with the glide or drag instead of snapping when .is-front flips at the half-way
+   point. .is-morphing marks 0 < --front < 1. The stack is a size container so the front width (cqw)
+   also resolves inside the caption. Breakpoints below only change the rest values. */
+.credential-slide{--front:0;--w-front:min(310px,82cqw);--w-side:168px;--pad-top:24px;--pad-x:28px;--pad-bottom:26px;--pad-side:16px;--radius-side:18px;--min-h:400px;--art-h:205px;--art-h-side:calc(var(--w-side) - 2 * var(--pad-side));--art-gap:17px;--art-front:185px;--art-side:128px;--reel-art-size:calc(var(--art-side) + (var(--art-front) - var(--art-side)) * var(--front))}
+.credential-slide{display:none;left:50%;top:50%;transform-origin:50% 50%;opacity:0;pointer-events:auto;width:calc(var(--w-side) + (var(--w-front) - var(--w-side)) * var(--front));min-height:calc(var(--min-h) * var(--front));padding:calc(var(--pad-side) + (var(--pad-top) - var(--pad-side)) * var(--front)) calc(var(--pad-side) + (var(--pad-x) - var(--pad-side)) * var(--front)) calc(var(--pad-side) + (var(--pad-bottom) - var(--pad-side)) * var(--front));border-radius:calc(var(--radius-side) + (12px - var(--radius-side)) * var(--front));will-change:transform,opacity;backface-visibility:hidden;transition:box-shadow .3s,border-radius .3s;box-sizing:border-box}
 .credential-slide.is-active{transform:none;z-index:auto;cursor:auto}
 .credential-slide.is-moving{animation:none}
-.credential-slide.is-front{box-shadow:0 30px 60px #0a163f66;min-height:400px}
+.credential-slide.is-front{box-shadow:0 30px 60px #0a163f66}
 /* side tiles: icon only */
-.credential-slide:not(.is-front){width:168px;padding:16px;border-radius:18px;cursor:pointer;box-shadow:0 14px 30px #12235e30}
-.credential-slide:not(.is-front) .slide-caption{display:none}
-.credential-slide:not(.is-front) .slide-art{height:auto;border:0;margin:0;padding:0}
-.credential-slide:not(.is-front){--reel-art-size:128px}
+.credential-slide:not(.is-front){cursor:pointer;box-shadow:0 14px 30px #12235e30}
+.credential-slide:not(.is-front):not(.is-morphing) .slide-caption{display:none}
 .credential-slide:not(.is-active)>*{pointer-events:none}
 .credential-slide:not(.is-active) .art-link{pointer-events:auto}
 .credential-slide:not(.is-active):hover{box-shadow:0 20px 40px #12235e55}
-.credential-slide.is-front .slide-caption{animation:caption-in .4s cubic-bezier(.16,1,.3,1) both}
-@keyframes caption-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* Mid-morph values change every frame, so no transition may trail behind them. */
+.credential-slide.is-morphing{transition:none;box-shadow:0 calc(14px + 16px * var(--front)) calc(30px + 30px * var(--front)) color-mix(in srgb,#0a163f66 calc(var(--front) * 100%),#12235e30)}
+/* The mount grows from the side tile's square to the front frame. Its separator is an inset line with
+   matching padding, not a border, so it thins out without nudging the artwork. */
+.reel .slide-art{height:calc(var(--art-h-side) + (var(--art-h) - var(--art-h-side)) * var(--front));margin:0 0 calc(var(--art-gap) * var(--front));padding:0 0 calc(1px * var(--front));border:0;box-shadow:inset 0 calc(-1px * var(--front)) var(--line)}
+/* The caption folds through one fr track (--caption-rows from app.js). Its text fades out early and in
+   late, and keeps the front-card width so the narrowing tile clips it instead of reflowing it. */
+.credential-slide.is-morphing .slide-caption{display:grid;grid-template-rows:var(--caption-rows,1fr);overflow:hidden}
+.credential-slide.is-morphing .caption-body{--reveal:clamp(0,(var(--front) - .6) / .4,1);min-height:0;min-width:calc(var(--w-front) - 2 * var(--pad-x));opacity:var(--reveal);translate:0 calc((1 - var(--reveal)) * 8px)}
 /* badge link with halo */
 .slide-art{position:relative}
 .art-link{position:relative;display:inline-grid;place-items:center;padding:10px;border-radius:50%;text-decoration:none;color:inherit;isolation:isolate;transition:transform .25s cubic-bezier(.16,1,.3,1)}
@@ -298,7 +309,7 @@ body:not(.js-enabled) .badge-tools{display:none}
 .auto-status[data-state="paused"]:before{animation:none;background:#ffffff70}
 .auto-status:empty{display:none}
 @keyframes status-pulse{from{box-shadow:0 0 0 0 #ffffff70}to{box-shadow:0 0 0 9px #ffffff00}}
-@media(prefers-reduced-motion:reduce){.auto-status:before,.art-halo,.art-halo:after{animation:none}.credential-slide.is-front .slide-caption{animation:none}}
-@media(max-width:1100px){.credential-slide.is-front{width:280px}.credential-slide:not(.is-front){width:150px;padding:14px;--reel-art-size:112px}}
-@media(max-width:700px){.reel,.slide-stack{min-height:470px}.credential-slide.is-front{width:min(230px,70%);min-height:0;padding:16px 18px 18px;--reel-art-size:112px}.credential-slide.is-front .slide-art{height:150px;margin-bottom:12px}.slide-caption h2{font-size:22px}.credential-slide:not(.is-front){width:112px;padding:10px;border-radius:14px;--reel-art-size:84px}.reel-line{width:560px;height:560px}}
+@media(prefers-reduced-motion:reduce){.auto-status:before,.art-halo,.art-halo:after{animation:none}}
+@media(max-width:1100px){.credential-slide{--w-front:280px;--w-side:150px;--pad-top:20px;--pad-x:24px;--pad-bottom:20px;--pad-side:14px;--art-h:185px;--art-side:112px}}
+@media(max-width:700px){.reel,.slide-stack{min-height:470px}.credential-slide{--w-front:min(230px,70cqw);--w-side:112px;--pad-top:16px;--pad-x:18px;--pad-bottom:18px;--pad-side:10px;--radius-side:14px;--min-h:0px;--art-h:150px;--art-gap:12px;--art-front:112px;--art-side:84px}.slide-caption h2{font-size:22px}.reel-line{width:560px;height:560px}}
 .showcase-intro{pointer-events:none}.showcase-intro>*{pointer-events:auto;width:fit-content;max-width:100%}

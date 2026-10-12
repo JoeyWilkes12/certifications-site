@@ -202,6 +202,11 @@ html[data-theme="dark"] .theme-moon {
   box-shadow: 0 14px 30px color-mix(in srgb, var(--portfolio-navy-950) 19%, transparent);
 }
 
+/* Between rest states the shadow follows the same --front mix as the tile size (styles.css). */
+.credential-slide.is-morphing {
+  box-shadow: 0 calc(14px + 16px * var(--front)) calc(30px + 30px * var(--front)) color-mix(in srgb, var(--portfolio-navy-950) calc(19% + 21% * var(--front)), transparent);
+}
+
 .credential-slide:not(.is-active):hover {
   box-shadow: 0 20px 40px color-mix(in srgb, var(--portfolio-navy-950) 33%, transparent);
 }
@@ -212,23 +217,25 @@ html[data-theme="dark"] .theme-moon {
   background: var(--white);
 }
 
-/* Keep thumbnail circles inside their square mounts at every reel breakpoint. */
-.reel .credential-slide:not(.is-front) .slide-art {
+/* Keep thumbnail circles inside their square mounts at every reel breakpoint. Mid-morph
+   nothing reaches the mount edge, so the clip only needs to hold at rest. */
+.reel .credential-slide:not(.is-front):not(.is-morphing) .slide-art {
   aspect-ratio: 1;
   overflow: hidden;
 }
 
-.reel .credential-slide:not(.is-front) .art-link {
-  padding: 2px;
+/* Thumbnail padding, frame and dashed ring mix toward the front card's with --front. */
+.reel .credential-slide .art-link {
+  padding: calc(2px + 8px * var(--front));
 }
 
-.reel .credential-slide:not(.is-front) .art-image {
-  width: calc(var(--reel-art-size) - 4px);
-  height: calc(var(--reel-art-size) - 4px);
+.reel .credential-slide .art-image {
+  width: calc(var(--reel-art-size) - 4px * (1 - var(--front)));
+  height: calc(var(--reel-art-size) - 4px * (1 - var(--front)));
 }
 
-.reel .credential-slide:not(.is-front) .art-halo::after {
-  inset: -1px;
+.reel .credential-slide .art-halo::after {
+  inset: calc(-1px - 5px * var(--front));
 }
 
 .reel .credential-slide:not(.is-front) .art-link:focus-visible {
@@ -618,8 +625,7 @@ body.display-mode .showcase {
 @media (prefers-reduced-motion: reduce) {
   .auto-status:before,
   .art-halo,
-  .art-halo:after,
-  .credential-slide.is-front .slide-caption {
+  .art-halo:after {
     animation: none;
   }
 }

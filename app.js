@@ -38,6 +38,14 @@ const stack = $('#slide-stack');
 const autoStatus = $('#auto-status');
 document.body.classList.add('js-enabled');
 for (const slide of slides) {
+  // A single grid item lets the caption fold through one fr track (see layout()).
+  const caption = slide.querySelector('.slide-caption');
+  if (caption) {
+    const body = document.createElement('div');
+    body.className = 'caption-body';
+    body.append(...caption.childNodes);
+    caption.append(body);
+  }
   const c = credentials.find(c => c.id === slide.dataset.id);
   const img = slide.querySelector('.slide-art img');
   if (!c || !img || !c.detailPath) continue;
@@ -127,7 +135,17 @@ function layout() {
     slide.style.opacity = opacity.toFixed(3);
     slide.style.zIndex = String(Math.round(1000 + z));
     slide.style.filter = facing > 0.9 ? 'none' : `saturate(${(0.7 + 0.3 * facing).toFixed(2)}) brightness(${(0.9 + 0.1 * facing).toFixed(2)})`;
+    // Frontness: 1 at the centre slot, 0 one slot away or farther. The CSS mixes each
+    // front/side size with it, so tiles resize with the glide or drag instead of
+    // snapping when .is-front flips. The caption's fr track (fr can't be built in CSS
+    // calc) opens on a smootherstep over the last 70% of the approach: little blank
+    // space mid-way, and its text (faded by CSS) is barely clipped while visible.
+    const front = +Math.max(0, 1 - Math.abs(d)).toFixed(3);
+    const open = Math.min(1, Math.max(0, (front - 0.3) / 0.7));
+    slide.style.setProperty('--front', front);
+    slide.style.setProperty('--caption-rows', `${+(open ** 3 * (open * (open * 6 - 15) + 10)).toFixed(3)}fr`);
     slide.classList.toggle('is-front', Math.abs(d) < 0.5);
+    slide.classList.toggle('is-morphing', front > 0 && front < 1);
   }
 }
 
@@ -161,12 +179,21 @@ function normalizeTheta() {
 function settle() {
   // called when motion stops: sync active card + aria, then arm the next automatic step
   normalizeTheta();
+  rememberFrontWidth();
   const count = filtered.length;
   if (!count) return;
   const index = ((Math.round(theta) % count) + count) % count;
   const id = filtered[index].id;
   if (id !== activeId) { activeId = id; syncActive({ announce: !autoActive() }); }
   armStep();
+}
+
+// Drag distance follows the front tile's full width; mid-glide it is still resizing,
+// so a gesture started then uses the width from the last rest state.
+let frontWidth = 320;
+function rememberFrontWidth() {
+  const front = slides.find(slide => slide.classList.contains('is-front') && slide.style.display !== 'none');
+  if (front && !front.classList.contains('is-morphing')) frontWidth = front.offsetWidth || frontWidth;
 }
 
 function armStep() {
@@ -228,6 +255,7 @@ function render() {
   measure();
   syncActive();
   layout();
+  rememberFrontWidth();
   armStep();
 }
 
@@ -288,11 +316,11 @@ reel.addEventListener('pointerdown', event => {
   swipeClickUntil = 0;
   touch();
   tween = null;
-  const front = slides.find(slide => slide.classList.contains('is-front') && slide.style.display !== 'none');
+  rememberFrontWidth();
   dragging = {
     x: event.clientX, y: event.clientY, dx: 0,
     startTheta: theta, startSlot: Math.round(theta), theta,
-    distance: Math.max(160, (front?.offsetWidth || 320) * 0.9),
+    distance: Math.max(160, frontWidth * 0.9),
     moved: false, pointerId: event.pointerId,
     target: event.target.closest('.credential-slide'), link: event.target.closest('a'),
   };
